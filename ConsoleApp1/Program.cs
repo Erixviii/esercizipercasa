@@ -10,7 +10,7 @@ namespace esercizio3
             Persona eric = new Persona();
 
             WriteLine("prova_Classi.Persona");
-            WriteLine(eric.ToString());
+            WriteLine(eric);
 
             WriteLine("prova_Classi.Persona");
             WriteLine("Ora utilizzo la proprietà per modificare il nome");
@@ -46,7 +46,6 @@ namespace esercizio3
         private string _cognome;
         private int _eta;
         private string _sesso;
-
         public Persona(string nome = "", string cognome = "", int eta = 1, string sesso = "")
         {
             Nome = nome;
@@ -54,8 +53,17 @@ namespace esercizio3
             Eta = eta;
             Sesso = sesso;
         }
-
-        public string Nome { get => _nome; set { if (value.Equals("")) { _nome = "(nessun nome)"; } else { _nome = value; } } }
+        public string Nome {
+            get => _nome;
+            set {
+                if (value.Equals(""))
+                {
+                    _nome = "(nessun nome)";
+                } else {
+                    _nome = value;
+                }
+            }
+        }
         public string Cognome { get => _cognome; set { if (value.Equals("")) { _cognome = "(nessun nome)"; } else { _cognome = value; } } }
         public int Eta
         {
