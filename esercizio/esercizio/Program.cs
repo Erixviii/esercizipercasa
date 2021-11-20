@@ -36,16 +36,16 @@ namespace esercizio1
         private int _eta;
         private string _sesso;
 
-        public Persona()
+        public Persona(string nome = "", string cognome = "", int eta = 1, string sesso = "")
         {
-            _nome = "";
-            _cognome = "";
-            _eta = 0;
-            _sesso = "";
+            Nome = nome;
+            Cognome = cognome;
+            Eta = eta;
+            Sesso = sesso;
         }
 
-        public string Nome { get => _nome; set { if (value.Trim().Equals("")) { _nome = "(nessun nome)"; } } }
-        public string Cognome { get => _cognome; set { if (value.Trim().Equals("")) { _cognome = "(nessun nome)"; } } }
+        public string Nome { get => _nome; set { if (value.Equals("")) { _nome = "(nessun nome)"; } else { _nome = value; } } }
+        public string Cognome { get => _cognome; set { if (value.Equals("")) { _cognome = "(nessun nome)"; } else { _cognome = value; } } }
         public int Eta
         {
             get => _eta; set
@@ -76,9 +76,10 @@ namespace esercizio1
         public override string ToString()
         {
             return $"Nome: {Nome}\n" +
-                   $"Cognome: {Cognome}"
+                   $"Cognome: {Cognome}\n" +
+                   $"età: {Eta}"
                    ;
         }
-
     }
+}
 }
