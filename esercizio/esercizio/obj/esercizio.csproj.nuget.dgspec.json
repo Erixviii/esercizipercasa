@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\4079753\\source\\repos\\esercizio\\esercizio\\esercizio.csproj": {}
+    "C:\\Users\\4079753\\Documents\\GitHub\\esercizio1\\esercizio\\esercizio\\esercizio.csproj": {}
   },
   "projects": {
-    "C:\\Users\\4079753\\source\\repos\\esercizio\\esercizio\\esercizio.csproj": {
+    "C:\\Users\\4079753\\Documents\\GitHub\\esercizio1\\esercizio\\esercizio\\esercizio.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\4079753\\source\\repos\\esercizio\\esercizio\\esercizio.csproj",
+        "projectUniqueName": "C:\\Users\\4079753\\Documents\\GitHub\\esercizio1\\esercizio\\esercizio\\esercizio.csproj",
         "projectName": "esercizio",
-        "projectPath": "C:\\Users\\4079753\\source\\repos\\esercizio\\esercizio\\esercizio.csproj",
+        "projectPath": "C:\\Users\\4079753\\Documents\\GitHub\\esercizio1\\esercizio\\esercizio\\esercizio.csproj",
         "packagesPath": "C:\\Users\\4079753\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\4079753\\source\\repos\\esercizio\\esercizio\\obj\\",
+        "outputPath": "C:\\Users\\4079753\\Documents\\GitHub\\esercizio1\\esercizio\\esercizio\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
