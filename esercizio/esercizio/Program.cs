@@ -7,7 +7,6 @@ namespace esercizio1
     {
         static void Main(string[] args)
         {
-            //hey
             Persona eric = new Persona();
             WriteLine("prova_Classi.Persona");
             WriteLine(eric.ToString());
