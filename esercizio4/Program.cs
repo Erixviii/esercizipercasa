@@ -38,6 +38,18 @@ namespace esercizio4
 
             WriteLine(p1.ToString() + " * " + p2.ToString() + " = " + Op_asterisco(p1, p2).ToString());
 
+            int calcolopotenza(Potenza p)
+            {
+                int c=1;
+
+                for (int i = 0; i < p.Esponente; i++)
+                {
+                    c = c * p.Base;
+                }
+
+                return c;
+            }
+
             Potenza Op_asterisco(Potenza p1,Potenza p2)
             {
                 Potenza p3 = new Potenza(p1.Base, p1.Esponente);
@@ -49,7 +61,7 @@ namespace esercizio4
                 }
                 else
                 {
-                    p3.Base = (p1.Base ^ (p1.Esponente)) * (p2.Base ^ (p2.Esponente));
+                    p3.Base = calcolopotenza(p1) * calcolopotenza(p2);
                     p3.Esponente = 1;
                 }
 
@@ -71,6 +83,11 @@ namespace esercizio4
                 {
 
                     p3.Esponente = p1.Esponente - p2.Esponente;
+                }
+                else
+                {
+                    p3.Base = calcolopotenza(p1) / calcolopotenza(p2);
+                    p3.Esponente = 1;
                 }
 
                 if (p1.Esponente == p2.Esponente)
