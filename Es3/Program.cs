@@ -10,9 +10,6 @@ namespace esercizio3
             Persona eric = new Persona();
 
             WriteLine("prova_Classi.Persona");
-            WriteLine(eric);
-
-            WriteLine("prova_Classi.Persona");
             WriteLine("Ora utilizzo la proprietà per modificare il nome");
             eric.Nome = "";
             WriteLine($"Nuovo nome: {eric.Nome}");
