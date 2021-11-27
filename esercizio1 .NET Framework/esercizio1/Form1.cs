@@ -12,6 +12,9 @@ namespace esercizio1
 {
     public partial class Form1 : Form
     {
+        private Cfrazione a;
+        private Cfrazione b;
+        private Cfrazione c;
         public Form1()
         {
             InitializeComponent();
@@ -19,8 +22,64 @@ namespace esercizio1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Cfrazione a = new Cfrazione(1,360);
-            a.MinComMult(a,a);
+            a = new Cfrazione(1,360);
+            b = new Cfrazione();
+            c = new Cfrazione();
+        }
+
+        private void textBox_TextChanged(object sender, EventArgs e)
+        {
+            TextBox This = sender as TextBox;
+
+            if (!int.TryParse(This.Text, out int n) || n < 0 || 
+               (This == textBox4 && n == 0) || //denominatore
+               (This == textBox5 && n == 0) || //denominatore
+               (This == textBox6 && n == 0) /*denominatore*/)  This.Text = "";
+
+        }
+
+        private void radioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton This = sender as RadioButton;
+
+            if (textBox1.Text != "" && textBox3.Text != "" && textBox4.Text != "" && textBox5.Text != "")
+            {
+                Assegnamento(a, textBox1.Text, textBox4.Text);
+                Assegnamento(b, textBox3.Text, textBox5.Text);
+
+                switch (This.Text)
+                {
+                    case "Sum":
+                        c = c.SommaFrazioni(a, b);
+                        MessageBox.Show(c.Numeratore.ToString()+" "+ c.Denominatore.ToString());
+                        break;
+                    case "Difference":
+                        c = c.SottrFrazioni(a, b);
+                        break;
+                    case "Moltiplication":
+                        c = c.MoltFraz(a, b);
+                        break;
+                    case "Division":
+                        c = c.DivFraz(a, b);
+                        break;
+
+                }
+                Assegnamento(c, textBox2, textBox6);
+            }
+        }
+
+        void Assegnamento(Cfrazione d, TextBox txt1, TextBox txt2)
+        {
+
+            txt1.Text = d.Numeratore.ToString();
+            txt2.Text = d.Denominatore.ToString();
+        }
+
+        void Assegnamento(Cfrazione d, string txt1, string txt2)
+        {
+
+            d.Numeratore=int.Parse(txt1);
+            d.Denominatore=int.Parse(txt2);
         }
     }
 
