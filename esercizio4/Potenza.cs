@@ -30,7 +30,7 @@ namespace esercizio4
             }
         }
 
-        public static Potenza Moltiplica(Potenza p1, Potenza p2)
+        public static Potenza operator *(Potenza p1, Potenza p2)
         {
             Potenza p3 = new Potenza(p1.Base, p1.Esponente);
 
