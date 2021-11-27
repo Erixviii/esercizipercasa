@@ -50,6 +50,25 @@ namespace esercizio4
                 return c;
             }
 
+            Potenza Moltiplica(Potenza p1, Potenza p2)
+            {
+                Potenza p3 = new Potenza(p1.Base, p1.Esponente);
+
+                if (p1.Base == p2.Base)
+                {
+
+                    p3.Esponente = p1.Esponente + p2.Esponente;
+                }
+
+                if (p1.Esponente == p2.Esponente)
+                {
+
+                    p3.Base = p1.Base * p2.Base;
+                    p3.Esponente = p1.Esponente;
+                }
+
+                return p3;
+            }
 
             Potenza Op_slash(Potenza p1, Potenza p2)
             {
