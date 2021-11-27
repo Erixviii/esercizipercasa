@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Console;
 
 namespace esercizio1
 {
@@ -22,9 +23,11 @@ namespace esercizio1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            a = new Cfrazione(1,360);
-            b = new Cfrazione();
+            a = new Cfrazione(1,36);
+            b = new Cfrazione(22,33);
             c = new Cfrazione();
+
+            b.MinComMult(a,b);
         }
 
         private void textBox_TextChanged(object sender, EventArgs e)
@@ -118,7 +121,7 @@ namespace esercizio1
             Cfrazione res = new Cfrazione();
 
             res.Denominatore = a.Denominatore * b.Denominatore;
-            res.Numeratore = a.Numeratore * (res.Denominatore - a.Denominatore) + b.Numeratore * (res.Denominatore - b.Denominatore);
+            res.Numeratore = a.Numeratore * (res.Denominatore / a.Denominatore) + b.Numeratore * (res.Denominatore / b.Denominatore);
 
             Semplifica(ref res);
 
@@ -130,7 +133,7 @@ namespace esercizio1
             Cfrazione res = new Cfrazione();
 
             res.Denominatore = a.Denominatore * b.Denominatore;
-            res.Numeratore = a.Numeratore * (res.Denominatore - a.Denominatore) - b.Numeratore * (res.Denominatore - b.Denominatore);
+            res.Numeratore = a.Numeratore * (res.Denominatore / a.Denominatore) - b.Numeratore * (res.Denominatore / b.Denominatore);
 
             Semplifica(ref res);
 
@@ -162,15 +165,23 @@ namespace esercizio1
 
             return res;
         }
-        public int MinComMult(Cfrazione a, Cfrazione b)
+        public void MinComMult(Cfrazione a, Cfrazione b)
         {
-            
-            int[] fattoria= Fattorizzazione(a.Denominatore);
+
+            int[] fattoria = Fattorizzazione(a.Denominatore);
             int[] fattorib = Fattorizzazione(b.Denominatore);
 
-            
-            MessageBox.Show(calcolopotenza(3,2).ToString());
-            return 0;
+            foreach (var item in fattoria)
+            {
+                Write(item.ToString());
+            }
+
+            Write("\n");
+
+            foreach (var item in fattorib)
+            {
+                Write(item.ToString());
+            }
         }
 
         int calcolopotenza(int b,int e)
@@ -179,7 +190,7 @@ namespace esercizio1
 
             for (int i = 0; i < e; i++)
             {
-                c = c * b;
+                c *= b;
             }
 
             return c;
@@ -235,6 +246,13 @@ namespace esercizio1
                 if (item == 5) cont5++;
                 if (item == 7) cont7++;
                 if (item == num) continpiu=num;
+            }
+
+            Write("\n");
+
+            foreach (var item in fattori)
+            {
+                Write(item.ToString());
             }
 
             return new int[] { cont2,cont3,cont5,cont7,continpiu };
