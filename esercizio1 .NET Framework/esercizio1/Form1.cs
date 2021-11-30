@@ -23,11 +23,11 @@ namespace esercizio1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            a = new Cfrazione(1,36);
-            b = new Cfrazione(22,33);
+            a = new Cfrazione(1, 36);
+            b = new Cfrazione(22, 33);
             c = new Cfrazione();
 
-            b.MinComMult(a,b);
+            b.MinComMult(a, b);
         }
 
         private void textBox_TextChanged(object sender, EventArgs e)
@@ -170,17 +170,24 @@ namespace esercizio1
 
             int[] fattoria = Fattorizzazione(a.Denominatore);
             int[] fattorib = Fattorizzazione(b.Denominatore);
+            int[] fattoric = new int[5];
 
-            foreach (var item in fattoria)
+            int i = 0;
+            foreach (int item in fattorib)
             {
-                Write(item.ToString());
-            }
+                if (fattoria[i] != 0 && fattorib[i] != 0)
+                {
+                    if (fattoria[i] <= fattorib[i])
+                    {
+                        fattoric[i] = fattoria[i];
+                    }
+                    else
+                    {
+                        fattoric[i] = fattorib[i];
+                    }
+                }
 
-            Write("\n");
-
-            foreach (var item in fattorib)
-            {
-                Write(item.ToString());
+                i++;
             }
         }
 
@@ -233,31 +240,48 @@ namespace esercizio1
                 fattori.Add(num);
             }
 
-            int cont2 = 0;
-            int cont3 = 0;
-            int cont5 = 0;
-            int cont7 = 0;
+            int esp2 = 0;
+            int esp3 = 0;
+            int esp5 = 0;
+            int esp7 = 0;
             int continpiu = 0;
 
             foreach (int item in fattori)
             {
-                if (item == 2) cont2++;
-                if (item == 3) cont3++;
-                if (item == 5) cont5++;
-                if (item == 7) cont7++;
-                if (item == num) continpiu=num;
+                if (item == 2) esp2++;
+                if (item == 3) esp3++;
+                if (item == 5) esp5++;
+                if (item == 7) esp7++;
+                if (item == num) continpiu=item;
             }
 
-            Write("\n");
-
-            foreach (var item in fattori)
-            {
-                Write(item.ToString());
-            }
-
-            return new int[] { cont2,cont3,cont5,cont7,continpiu };
+            return new int[] { esp2,esp3,esp5,esp7,continpiu };
         }
-        public Cfrazione MassComDiv(){ return null;}
+        public Cfrazione MassComDiv()
+        {
+            int[] fattoria = Fattorizzazione(a.Denominatore);
+            int[] fattorib = Fattorizzazione(b.Denominatore);
+            int[] fattoric = new int[5];
+
+            int i = 0;
+            foreach (int item in fattorib)
+            {
+                if (fattoria[i] != 0 && fattorib[i] != 0)
+                {
+                    if (fattoria[i] <= fattorib[i])
+                    {
+                        fattoric[i] = fattoria[i];
+                    }
+                    else
+                    {
+                        fattoric[i] = fattorib[i];
+                    }
+                }
+
+                i++;
+            }
+            return null;
+        }
 
         public int Numeratore { get => _numeratore; set => _numeratore = value; }
         public int Denominatore { get => _denominatore; set => _denominatore = value; }
