@@ -29,6 +29,7 @@ namespace Player_musicale
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -42,8 +43,13 @@ namespace Player_musicale
             this.label4 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.button_WOC1 = new ePOSOne.btnProduct.Button_WOC();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.button_WOC2 = new ePOSOne.btnProduct.Button_WOC();
+            this.button_WOC1 = new ePOSOne.btnProduct.Button_WOC();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -96,11 +102,11 @@ namespace Player_musicale
             this.label3.BackColor = System.Drawing.Color.Black;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Gold;
-            this.label3.Location = new System.Drawing.Point(707, 201);
+            this.label3.Location = new System.Drawing.Point(689, 200);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(68, 13);
+            this.label3.Size = new System.Drawing.Size(97, 13);
             this.label3.TabIndex = 6;
-            this.label3.Text = "Lunghezza";
+            this.label3.Text = "Durata(secondi)";
             // 
             // textBox3
             // 
@@ -146,6 +152,7 @@ namespace Player_musicale
             this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.Size = new System.Drawing.Size(423, 248);
             this.dataGridView1.TabIndex = 7;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // label4
             // 
@@ -161,8 +168,9 @@ namespace Player_musicale
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Gold;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox1.Location = new System.Drawing.Point(147, 77);
+            this.pictureBox1.Location = new System.Drawing.Point(144, 77);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(337, 272);
             this.pictureBox1.TabIndex = 9;
@@ -179,6 +187,71 @@ namespace Player_musicale
             this.label5.Size = new System.Drawing.Size(12, 13);
             this.label5.TabIndex = 10;
             this.label5.Text = "°";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Black;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Gold;
+            this.label6.Location = new System.Drawing.Point(251, 374);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(36, 13);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "Song";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Black;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.Gold;
+            this.label7.Location = new System.Drawing.Point(548, 390);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(14, 13);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "0";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.Black;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.Gold;
+            this.label8.Location = new System.Drawing.Point(293, 374);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(56, 13);
+            this.label8.TabIndex = 15;
+            this.label8.Text = "-    Artist";
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer_tick);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
+            // 
+            // button_WOC2
+            // 
+            this.button_WOC2.BackColor = System.Drawing.Color.Black;
+            this.button_WOC2.BorderColor = System.Drawing.Color.Black;
+            this.button_WOC2.ButtonColor = System.Drawing.Color.Gold;
+            this.button_WOC2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button_WOC2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_WOC2.Location = new System.Drawing.Point(254, 450);
+            this.button_WOC2.Name = "button_WOC2";
+            this.button_WOC2.OnHoverBorderColor = System.Drawing.Color.Transparent;
+            this.button_WOC2.OnHoverButtonColor = System.Drawing.Color.Gold;
+            this.button_WOC2.OnHoverTextColor = System.Drawing.Color.Black;
+            this.button_WOC2.Size = new System.Drawing.Size(87, 42);
+            this.button_WOC2.TabIndex = 12;
+            this.button_WOC2.Text = "Play";
+            this.button_WOC2.TextColor = System.Drawing.Color.Black;
+            this.button_WOC2.UseVisualStyleBackColor = false;
+            this.button_WOC2.Click += new System.EventHandler(this.button_WOC2_Click);
             // 
             // button_WOC1
             // 
@@ -198,29 +271,15 @@ namespace Player_musicale
             this.button_WOC1.UseVisualStyleBackColor = true;
             this.button_WOC1.Click += new System.EventHandler(this.button_WOC1_Click);
             // 
-            // button_WOC2
-            // 
-            this.button_WOC2.BorderColor = System.Drawing.Color.Black;
-            this.button_WOC2.ButtonColor = System.Drawing.Color.Gold;
-            this.button_WOC2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button_WOC2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_WOC2.Location = new System.Drawing.Point(254, 450);
-            this.button_WOC2.Name = "button_WOC2";
-            this.button_WOC2.OnHoverBorderColor = System.Drawing.Color.Transparent;
-            this.button_WOC2.OnHoverButtonColor = System.Drawing.Color.Olive;
-            this.button_WOC2.OnHoverTextColor = System.Drawing.Color.DimGray;
-            this.button_WOC2.Size = new System.Drawing.Size(87, 42);
-            this.button_WOC2.TabIndex = 12;
-            this.button_WOC2.Text = "Play";
-            this.button_WOC2.TextColor = System.Drawing.Color.Black;
-            this.button_WOC2.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(1062, 540);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.button_WOC2);
             this.Controls.Add(this.button_WOC1);
             this.Controls.Add(this.label5);
@@ -256,6 +315,11 @@ namespace Player_musicale
         private System.Windows.Forms.Label label5;
         private ePOSOne.btnProduct.Button_WOC button_WOC1;
         private ePOSOne.btnProduct.Button_WOC button_WOC2;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 
