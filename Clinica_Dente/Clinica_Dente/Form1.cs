@@ -246,7 +246,26 @@ namespace Clinica_Dente
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
             CaricaDGV();
+            CaricaCMB();
+        }
+
+        private void CaricaCMB()
+        {
+
+            foreach (Paziente p in LSTpazienti)
+            {
+                CMBPazienti.Items.Add(p.Nome + " "+ p.Cognome);
+            }
+
+            foreach (Medico m in LSTmedici)
+            {
+                CMBMedici.Items.Add(m.Nome + " " + m.Cognome);
+            }
+
+            CMBPazienti.Sorted = true;
+            CMBMedici.Sorted = true;
         }
 
         private void CaricaDGV()
@@ -280,63 +299,47 @@ namespace Clinica_Dente
             DGVMedici.Columns.Add((DataGridViewColumn)DGVMedici.Columns[1].Clone());
             DGVMedici.Columns.RemoveAt(1);
         }
-    }
 
-    class Appuntamento
-    {
-        public DateTime Data { get; set; }
-        public string Paziente { get; set; }
-        public string Medico { get; set; }
-    }
+        private void CheckedChanged(object sender, EventArgs e)
+        {
+            if ((sender as CheckBox)==checkBox1)
+                TimePicker.Enabled = (sender as CheckBox).Checked;
+            else if ((sender as CheckBox)==checkBox2)
+                CMBPazienti.Enabled = (sender as CheckBox).Checked;
+            else if ((sender as CheckBox) == checkBox3)
+                CMBMedici.Enabled = (sender as CheckBox).Checked;
+        }
 
-    class Paziente
-    {
+        private void button2_Click(object sender, EventArgs e)
+        {
 
-        public string Nome { get; set; }
-        public string Cognome { get; set; }
-        public string email { get; set; }
-        virtual public string Patologia { get; set; }
-        public int Id { get; set; }
-    }
+            DGVAppuntamenti.DataSource = null;
 
-    class Medico : Paziente
-    {
-        
-        public override string Patologia { get => Specializzazione; set => Specializzazione = value; }
-        public string Specializzazione { get; set; }
-    }
+            DGVAppuntamenti.DataSource = LSTappuntamenti;
+        }
 
-    class Patologia 
-    {
-        //private int[,] associazioni = new int[,] {
-        //    { 8, 4 },
-        //    { 8,9},
-        //    { 8,13},
-        //    { 10,7},
-        //    { 11,1},
-        //    { 11,6},
-        //    { 11,8},
-        //    { 11,16},
-        //    { 12,3},
-        //    { 13,5},
-        //    { 13,11},
-        //    { 13,18},
-        //    { 14,10},
-        //    { 14,14},
-        //    { 17,17},
-        //    { 19,19},
-        //    { 20,12},
-        //    { 21,15},
-        //    { 23,2}
-        //    };
-        public string Nome { get; set; }
-        public int Id { get; set; }
-    }
+        private void button1_Click(object sender, EventArgs e)
+        {
 
-    class Specializzazione 
-    {
+            List<Appuntamento> LSThelp_appuntamenti = new List<Appuntamento>();
 
-        public string Nome { get; set; }
-        public int Id { get; set; }
+            foreach(Appuntamento apt in LSTappuntamenti)
+            {
+                if (CMBMedici.Enabled)
+                    if (apt.Medico == CMBMedici.Text)
+                        LSThelp_appuntamenti.Add(apt);
+
+                if (CMBPazienti.Enabled)
+                    if (apt.Paziente == CMBPazienti.Text)
+                        LSThelp_appuntamenti.Add(apt);
+
+                if (TimePicker.Enabled)
+                    if (apt.Data.Year == TimePicker.Value.Year && apt.Data.Month == TimePicker.Value.Month && apt.Data.Day == TimePicker.Value.Day)
+                        LSThelp_appuntamenti.Add(apt);
+            }
+
+            DGVAppuntamenti.DataSource = null;
+            DGVAppuntamenti.DataSource = LSThelp_appuntamenti;
+        }
     }
 }
