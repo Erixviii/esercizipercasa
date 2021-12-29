@@ -325,17 +325,19 @@ namespace Clinica_Dente
 
             foreach(Appuntamento apt in LSTappuntamenti)
             {
-                if (CMBMedici.Enabled)
-                    if (apt.Medico == CMBMedici.Text)
-                        LSThelp_appuntamenti.Add(apt);
+                bool ok = true;
 
-                if (CMBPazienti.Enabled)
-                    if (apt.Paziente == CMBPazienti.Text)
-                        LSThelp_appuntamenti.Add(apt);
+                if (CMBMedici.Enabled && ok) 
+                    ok = apt.Medico == CMBMedici.Text;
 
-                if (TimePicker.Enabled)
-                    if (apt.Data.Year == TimePicker.Value.Year && apt.Data.Month == TimePicker.Value.Month && apt.Data.Day == TimePicker.Value.Day)
-                        LSThelp_appuntamenti.Add(apt);
+                if (CMBPazienti.Enabled && ok)
+                    ok = apt.Paziente == CMBPazienti.Text;
+
+                if (TimePicker.Enabled && ok) 
+                    ok = apt.Data.Year == TimePicker.Value.Year && apt.Data.Month == TimePicker.Value.Month && apt.Data.Day == TimePicker.Value.Day;
+
+                if (ok)
+                    LSThelp_appuntamenti.Add(apt);
             }
 
             DGVAppuntamenti.DataSource = null;
