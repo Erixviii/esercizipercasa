@@ -11,6 +11,7 @@ namespace XML_dente
         {
             WriteLine("vuoi leggere(1) o scrivere(2)");
             string rs = ReadLine();
+
             if (rs == "2")
             {
                 XmlTextWriter writer = new XmlTextWriter("C:\\Users\\4079753\\Documents\\GitHub\\esercizipercasa\\XML_Dente\\XMLstudenti.xml", null);
