@@ -1,0 +1,147 @@
+
+  [
+    {
+      "num": 25,
+      "name": "Pikachu",
+      "variations": [
+          {
+              "name": "Pikachu",
+              "description": "Pikachu is an Electric type Pokémon<br> introduced in Generation 1.<br> It is known as the Mouse Pokémon.",
+              "image": "./pikachu.png",
+              "types": [
+                  "Electric"
+              ],
+              "specie": "Mouse Pokémon",
+              "height": 0.4,
+              "weight": 6,
+              "abilities": [
+                  "Static",
+                  "Lightning Rod"
+              ],
+              "stats": {
+                  "total": 320,
+                  "hp": 35,
+                  "attack": 55,
+                  "defense": 40,
+                  "speedAttack": 50,
+                  "speedDefense": 50,
+                  "speed": 90
+              },
+              "evolutions": [
+                  "pichu",
+                  "pikachu",
+                  "raichu"
+              ]
+          }
+      ],
+      "link": "https://pokemondb.net/pokedex/pikachu"
+    },
+    {
+        "num": 4,
+        "name": "Charmander",
+        "variations": [
+            {
+                "name": "Charmander",
+                "description": "Charmander is a Fire type Pokémon<br> introduced in Generation 1.<br> It is known as the Lizard Pokémon.",
+                "image": "./charmander.png",
+                "types": [
+                    "Fire"
+                ],
+                "specie": "Lizard Pokémon",
+                "height": 0.6,
+                "weight": 8.5,
+                "abilities": [
+                    "Blaze",
+                    "Solar Power"
+                ],
+                "stats": {
+                    "total": 309,
+                    "hp": 39,
+                    "attack": 52,
+                    "defense": 43,
+                    "speedAttack": 60,
+                    "speedDefense": 50,
+                    "speed": 65
+                },
+                "evolutions": [
+                    "charmander",
+                    "charmeleon",
+                    "charizard"
+                ]
+            }
+        ],
+        "link": "https://pokemondb.net/pokedex/charmander"
+    },
+    {
+        "num": 387,
+        "name": "Turtwig",
+        "variations": [
+            {
+                "name": "Turtwig",
+                "description": "Turtwig is a Grass type Pokémon<br> introduced in Generation 4. <br>It is known as the Tiny Leaf Pokémon.",
+                "image": "./turtwig.png",
+                "types": [
+                    "Grass"
+                ],
+                "specie": "Tiny Leaf Pokémon",
+                "height": 0.4,
+                "weight": 10.2,
+                "abilities": [
+                    "Overgrow",
+                    "Shell Armor"
+                ],
+                "stats": {
+                    "total": 318,
+                    "hp": 55,
+                    "attack": 68,
+                    "defense": 64,
+                    "speedAttack": 45,
+                    "speedDefense": 55,
+                    "speed": 31
+                },
+                "evolutions": [
+                    "turtwig",
+                    "grotle",
+                    "torterra"
+                ]
+            }
+        ],
+        "link": "https://pokemondb.net/pokedex/turtwig"
+    },
+    {
+        "num": 7,
+        "name": "Squirtle",
+        "variations": [
+            {
+                "name": "Squirtle",
+                "description": "Squirtle is a Water type Pokémon<br> introduced in Generation 1.<br> It is known as the Tiny Turtle Pokémon.",
+                "image": "./squirtle.png",
+                "types": [
+                    "Water"
+                ],
+                "specie": "Tiny Turtle Pokémon",
+                "height": 0.5,
+                "weight": 9,
+                "abilities": [
+                    "Torrent",
+                    "Rain Dish"
+                ],
+                "stats": {
+                    "total": 314,
+                    "hp": 44,
+                    "attack": 48,
+                    "defense": 65,
+                    "speedAttack": 50,
+                    "speedDefense": 64,
+                    "speed": 43
+                },
+                "evolutions": [
+                    "squirtle",
+                    "wartortle",
+                    "blastoise"
+                ]
+            }
+        ],
+        "link": "https://pokemondb.net/pokedex/squirtle"
+    }
+  ]
