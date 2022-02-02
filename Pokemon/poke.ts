@@ -3,9 +3,12 @@ main()
 
 
 function main(){       
-    for (let index = 0; index < 4; index++) {
+    for (let index = -1; index < 4; index++) {
         
         switch (index) {
+            case -1:
+                takeit("charmander",index)
+            break;
             case 0:
                 takeit("charmander",index)
             break;
@@ -18,8 +21,6 @@ function main(){
             case 3:
                 takeit("pikachu",index)
             break;
-            default:
-                break;
         }
         
     }
@@ -30,10 +31,10 @@ function takeit(nome:string,index:number){
         .then(response => response.json())
         .then((mon) => {  
             
-            if(index==0)
+            if(index==-1)
             addHTML(`<h1 style="margin-left:10%">CHOOSE YOUR FIRST POKEMON</h1><br><br>`)
 
-            if(index<3)
+            if(index<3&&index!=-1)
             addHTML(` 
                 <div class="card" style="display:inline-block;text-align: center;">
                         <img src="${mon.sprites.front_default}" alt="Ma che ca...?" style="width:40%;">
