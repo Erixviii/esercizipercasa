@@ -14,10 +14,7 @@ namespace DataBinding
         public Form2()
         {
             InitializeComponent();
-        }
 
-        private void Form2_Load(object sender, EventArgs e)
-        {
             Università un1 = new Università("UNIPD", "Università di Padova", "Padova");
             un1.Dipartimenti.Add(new Dipartimenti("Economia"));
             un1.Dipartimenti.Add(new Dipartimenti("Psicologia"));
@@ -34,15 +31,36 @@ namespace DataBinding
             un4.Dipartimenti.Add(new Dipartimenti("Matematica"));
             un4.Dipartimenti.Add(new Dipartimenti("Informatica"));
             un4.Dipartimenti.Add(new Dipartimenti("Economia e Marketing"));
-            Università[] arrUni = new Università[]
+            Università[] Unis = new Università[]
             {
                 un1, un2, un3, un4
             };
 
-            comboBox1.DataSource = arrUni;
-            comboBox1.DisplayMember = "_Sigla";
-            textBox1.DataBindings.Add("Text", arrUni, "_Nome");
-            textBox2.DataBindings.Add("Text", arrUni, "_Indirizzo");
+            BindingSource sorgUni = new BindingSource
+            {
+                DataSource = Unis
+            };
+
+            comboBox1.DataSource = sorgUni;
+            comboBox1.DisplayMember = "Sigla";
+
+            textBox1.DataBindings.Add("Text", sorgUni, "Nome");
+            textBox2.DataBindings.Add("Text", sorgUni, "Indirizzo");
+
+
+            BindingSource comboBoxSource = new BindingSource
+            {
+                DataSource = comboBox1.DataSource,
+                DataMember = "Dipartimenti"
+            };
+
+            comboBox2.DataSource = comboBoxSource;
+            comboBox2.DisplayMember = "Nome";
+        }
+
+        private void Form2_Load(object sender, EventArgs e)
+        {
+            
         }
 
         private void button1_Click(object sender, EventArgs e)

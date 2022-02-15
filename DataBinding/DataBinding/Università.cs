@@ -3,17 +3,17 @@ namespace DataBinding
 {
     class Università
     {
-        public Università(string Sigla, string Nome, string Indirizzo)
+        public Università(string sigla, string nome, string indirizzo)
         {
-            _Sigla = Sigla;
-            _Nome = Nome;
-            _Indirizzo = Indirizzo;
+            Sigla = sigla;
+            Nome = nome;
+            Indirizzo = indirizzo;
             Dipartimenti = new List<Dipartimenti>();
         }
 
-        public string _Sigla { get; set; }
-        public string _Nome { get; set; }
-        public string _Indirizzo { get; set; }
+        public string Sigla { get; set; }
+        public string Nome { get; set; }
+        public string Indirizzo { get; set; }
         public List<Dipartimenti> Dipartimenti { get; set; }
     }
 }

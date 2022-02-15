@@ -4,10 +4,10 @@ namespace DataBinding
     class Dipartimenti
     {
         public List<Studente> Studenti { get; set; }
-        public string _NomeDipartimento { get; set; }
-        public Dipartimenti(string NomeDipartimento)
+        public string Nome { get; set; }
+        public Dipartimenti(string nome)
         {
-            _NomeDipartimento = NomeDipartimento;
+            Nome = nome;
 
             Studenti = new List<Studente>();
         }
