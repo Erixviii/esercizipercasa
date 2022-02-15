@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace DataBinding
 {
@@ -10,6 +12,8 @@ namespace DataBinding
         public Form1()
         {
             InitializeComponent();
+
+            this.DataBindings.Add("Size", textBox4, "text", true, DataSourceUpdateMode.OnPropertyChanged);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -28,7 +32,7 @@ namespace DataBinding
             comboBox1.DataSource = persone ;
             comboBox1.DisplayMember = "Cognome";
 
-            comboBox2.DataBindings.Add(new Binding("Text", comboBox1, "Text"));
+            comboBox2.DataSource= persone ;
             comboBox2.DisplayMember = "Nomecompleto";
 
             BindingSource bindlist = new BindingSource
@@ -37,9 +41,9 @@ namespace DataBinding
                 DataMember = "Id"
             };
 
-            textBox3.DataBindings.Add(new Binding("Text",comboBox1,"Id", true,DataSourceUpdateMode.OnPropertyChanged));
+            textBox3.DataBindings.Add(new Binding("Text",persone,"Id", true,DataSourceUpdateMode.OnPropertyChanged));
   
-            label6.DataBindings.Add(new Binding("Text", comboBox1, "Id", true, DataSourceUpdateMode.OnPropertyChanged));
+            label6.DataBindings.Add(new Binding("Text", persone, "Nome"));
 
         }
 
@@ -47,30 +51,12 @@ namespace DataBinding
         {
 
         }
-    }
 
-    class Studente
-    {
-
-    }
-
-    class Università
-    {
-
-    }
-
-    class Persona
-    {
-        public Persona(int id, string nome, string cognome)
+        private void button1_Click(object sender, EventArgs e)
         {
-            Id = id;
-            Nome = nome;
-            Cognome = cognome;
+            Form2 next = new Form2();
+            next.Show();
+            Hide();
         }
-
-        public int Id { get; set; }
-        public string Nome { get; set; }
-        public string Cognome { get; set; }
-        public string Nomecompleto { get => $"{Nome} {Cognome}"; set => Nomecompleto = value; }
     }
 }

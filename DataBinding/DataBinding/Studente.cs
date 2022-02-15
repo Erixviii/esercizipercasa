@@ -1,0 +1,7 @@
+﻿namespace DataBinding
+{
+    class Studente
+    {
+
+    }
+}
