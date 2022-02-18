@@ -4,19 +4,33 @@ body{
 }
 
 .machine{
-    margin-left: 10%;
-    margin-right: 10%;
-    background: cyan;
-    height: 100%;
+  width: 65%;
+  margin-block-start: 5%;
+  margin-left: auto;
+  margin-right: auto;
+  background: cyan;
+  height: 100%;
 }
 
 .slotimg {
+  
+  position: static;
+  background: black;
+  max-width: 200px;
+  max-height: 150px;
+  border-radius: 100%;
+  margin-inline-start: 5%;
+}
 
-    position: static;
-    background: black;
-    max-width: 200px;
-    max-height: 150px;
-    border-radius: 100%;
-    margin-inline-start: 5%;
-    
+button{
+  background: center;
+  margin-block-end: auto;
+}
+
+.container{
+  padding-block-end: 1%;
+  padding-block-start: 5%;
+  text-align: center;
+  padding-inline-start: 10%;
+  padding-inline-end: 10%;
 }
