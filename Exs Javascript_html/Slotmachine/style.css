@@ -1,0 +1,21 @@
+body{
+  background-repeat: no-repeat;
+  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSID9X1rX0LZdKEJoVI858xvOsqolcNcM24kw&usqp=CAU);
+}
+
+.machine{
+    margin-left: 10%;
+    margin-right: 10%;
+    background: cyan;
+    height: 100%;
+}
+
+.slotimg {
+
+    position: static;
+    background: black;
+    max-width: 200px;
+    max-height: 150px;
+    border-radius: 100%;
+    
+}
