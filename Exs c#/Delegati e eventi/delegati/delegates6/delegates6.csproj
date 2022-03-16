@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A15EC96C-08EF-4C08-8C49-BC1DF842FB94}</ProjectGuid>
+    <ProjectGuid>{B1887A6F-BA12-4A9C-8345-E0AB25E0454B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>delegates4</RootNamespace>
-    <AssemblyName>delegates4</AssemblyName>
+    <RootNamespace>delegates6</RootNamespace>
+    <AssemblyName>delegates6</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cliente.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

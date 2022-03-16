@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace delegates4
+namespace delegates5
 {
-    static class Program
+    internal static class Program
     {
         /// <summary>
         /// Punto di ingresso principale dell'applicazione.
