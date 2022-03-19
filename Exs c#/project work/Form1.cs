@@ -21,23 +21,61 @@ namespace project_work
             InitializeComponent();
         }
 
+        public BindingList<User> users;
+        private string user;
+
         private void Form1_Load(object sender, EventArgs e)
         {
+            user = null;
+            users = JsonConvert.DeserializeObject<BindingList<User>>(File.ReadAllText(@"../../users1.json"));
+        }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            foreach(User utn in users)
+                if ( utn.password==textBox2.Text && utn.email == textBox3.Text)
+                    user = utn.role;
+            if (user!=null)
+                Quit(user);
+            else
+                MessageBox.Show("wrong info!!");
+
+            user = null;
+        }
+
+        public void Quit(string role)
+        {
+            if (role == "admin")
+                new Form2(this).Show();
+            else
+                new Form3(this).Show();
         }
     }
-    class Utente
+    public class User
     {
+        public User(string first_name, string last_name, string email, string role, string city, string code, string password, string birth_date)
+        {
+            this.first_name = first_name;
+            this.last_name = last_name;
+            this.email = email;
+            this.role = role;
+            this.city = city;
+            this.code = code;
+            this.password = password;
+            this.birth_date = birth_date;
+        }
 
-        public string Nome { get; set; }
-        public string Cognome { get; set; }
-        public string Datadinascita { get; set; }
-        public string Codicefiscale { get; set; }
-        public string Cittàdiresidenza { get; set; }
-        public string Ruolo { get; set; }
-        public string Password { get; set; }
+        public string first_name{get;set;}
+        public string last_name{get;set;}
+        public string email{get;set;}
+        public string role{get;set;}
+        public string city{get;set;}
+        public string code{get;set;}
+        public string password{get;set;}
+        public string birth_date{get;set;}
+
     }
-    class Libro {
+    public class Libro {
 
         public string ISBN { get; set; }
         public string Titolo { get; set; }
@@ -51,7 +89,7 @@ namespace project_work
         public string Mediavoti { get; set; }
         public string Quantitàvoti { get; set; }
     }
-    class Prestito
+    public class Prestito
     {
         public string ISBNlibro{get;set;}
         public string Codicefiscaleutente { get; set; }
