@@ -23,18 +23,26 @@ namespace project_work
 
         public BindingList<User> users;
         private string user;
+        private string name;
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            name = "eric";
             user = null;
             users = JsonConvert.DeserializeObject<BindingList<User>>(File.ReadAllText(@"../../users1.json"));
+            Form2 frm2= new Form2(this);
+            frm2.Text = $"Admin {name}";
+            frm2.Show();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            foreach(User utn in users)
-                if ( utn.password==textBox2.Text && utn.email == textBox3.Text)
+            foreach (User utn in users)
+                if (utn.password == textBox2.Text && utn.email == textBox3.Text) { 
                     user = utn.role;
+                    name = utn.first_name; 
+                }
+
             if (user!=null)
                 Quit(user);
             else
@@ -46,7 +54,11 @@ namespace project_work
         public void Quit(string role)
         {
             if (role == "admin")
-                new Form2(this).Show();
+            {
+                Form2 frm2 = new Form2(this);
+                frm2.Text = $"Admin {name}";
+                frm2.Show();
+            }
             else
                 new Form3(this).Show();
         }

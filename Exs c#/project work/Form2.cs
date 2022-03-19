@@ -17,6 +17,7 @@ namespace project_work
     {
         public BindingList<User> LSTusers;
         private List<User> newuser;
+        private BindingSource SRCusers;
         public Form2(Form1 back)
         {
             InitializeComponent();
@@ -30,7 +31,7 @@ namespace project_work
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            BindingSource SRCusers = new BindingSource()
+            SRCusers = new BindingSource()
             {
                 DataSource = LSTusers
             };
@@ -43,6 +44,28 @@ namespace project_work
                 new User("","","","","","","","")
             };
             dataGridView1.DataSource = newuser;
+
+            Bindings();
+        }
+
+        private void Bindings()
+        {
+            TXTname.DataBindings.Add(new Binding("Text",SRCusers,"first_name"));
+            TXTsurname.DataBindings.Add(new Binding("Text",SRCusers,"last_name"));
+            TXTemail.DataBindings.Add(new Binding("Text",SRCusers,"email"));
+            TXTrole.DataBindings.Add(new Binding("Text",SRCusers,"role"));
+            TXTcity.DataBindings.Add(new Binding("Text",SRCusers,"city"));
+            TXTcode.DataBindings.Add(new Binding("Text",SRCusers,"code"));
+            TXTpassword.DataBindings.Add(new Binding("Text",SRCusers,"password"));
+            TXTbirth.DataBindings.Add(new Binding("Text",SRCusers,"birth_date"));
+
+            button1.DataBindings.Add(new Binding("Visible", checkBox1, "Checked"));
+            listBox1.DataBindings.Add(new Binding("Visible", checkBox1, "Checked"));
+            GRPinfo.DataBindings.Add(new Binding("Visible", checkBox1, "Checked"));
+
+
+            dataGridView1.DataBindings.Add(new Binding("Visible", checkBox2, "Checked"));
+            button2.DataBindings.Add(new Binding("Visible", checkBox2, "Checked"));
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -58,6 +81,13 @@ namespace project_work
         private void button2_Click(object sender, EventArgs e)
         {
             LSTusers.Insert(0, newuser[0]);
+            Refreshusers();
+
+            newuser = new List<User>()
+            {
+                new User("","","","","","","","")
+            };
+            dataGridView1.DataSource = newuser;
         }
     }
 }
