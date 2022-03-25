@@ -16,22 +16,24 @@ namespace project_work
     public partial class Form2 : Form
     {
         private BindingList<User> LSTusers;
+        private BindingList<Book> LSTbooks;
         private List<User> newuser;
         private BindingSource SRCusers;
+        private Dictionary<int,Book> Library;
         public Form2(Form1 back)
         {
             InitializeComponent();
-            LSTusers = back.users;
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            
+            LSTusers = back.LSTusers;
         }
 
         private void Form2_Load(object sender, EventArgs e)
         {
+            LSTbooks = JsonConvert.DeserializeObject<BindingList<Book>>(File.ReadAllText(@"../../books1.json"));
+            Library = new Dictionary<int, Book>();
             
+            foreach (Book utn in LSTbooks)
+                Library.Add(Library.Count, utn);
+
             Bindingusers();
         }
 
@@ -60,7 +62,7 @@ namespace project_work
             TXTpassword.DataBindings.Add(new Binding("Text",SRCusers,"password"));
             TXTbirth.DataBindings.Add(new Binding("Text",SRCusers,"birth_date"));
 
-            button1.DataBindings.Add(new Binding("Visible", CKUserlist, "Checked"));
+            button5.DataBindings.Add(new Binding("Visible", CKUserlist, "Checked"));
             listBox1.DataBindings.Add(new Binding("Visible", CKUserlist, "Checked"));
             GRPinfo.DataBindings.Add(new Binding("Visible", CKUserlist, "Checked"));
 
@@ -68,39 +70,39 @@ namespace project_work
             button2.DataBindings.Add(new Binding("Visible", CKuseradd, "Checked"));
         }
 
-        private void Bindingbooks()
-        {
-            SRCbooks = new BindingSource()
-            {
-                DataSource = LSTbooks
-            };
+        //private void Bindingbooks()
+        //{
+        //    SRCbooks = new BindingSource()
+        //    {
+        //        DataSource = LSTbooks
+        //    };
 
-            listBox1.DataSource = SRCbooks;
-            listBox1.DisplayMember = "first_name";
+        //    listBox1.DataSource = SRCbooks;
+        //    listBox1.DisplayMember = "first_name";
 
-            newbook = new List<book>()
-            {
-                new book("","","","","","","","")
-            };
-            dataGridView1.DataSource = newbook;
+        //    newbook = new List<book>()
+        //    {
+        //        new book("","","","","","","","")
+        //    };
+        //    dataGridView1.DataSource = newbook;
 
-            TXTname.DataBindings.Add(new Binding("Text", SRCbooks, "first_name"));
-            TXTsurname.DataBindings.Add(new Binding("Text", SRCbooks, "last_name"));
-            TXTemail.DataBindings.Add(new Binding("Text", SRCbooks, "email"));
-            TXTrole.DataBindings.Add(new Binding("Text", SRCbooks, "role"));
-            TXTcity.DataBindings.Add(new Binding("Text", SRCbooks, "city"));
-            TXTcode.DataBindings.Add(new Binding("Text", SRCbooks, "code"));
-            TXTpassword.DataBindings.Add(new Binding("Text", SRCbooks, "password"));
-            TXTbirth.DataBindings.Add(new Binding("Text", SRCbooks, "birth_date"));
+        //    TXTname.DataBindings.Add(new Binding("Text", SRCbooks, "first_name"));
+        //    TXTsurname.DataBindings.Add(new Binding("Text", SRCbooks, "last_name"));
+        //    TXTemail.DataBindings.Add(new Binding("Text", SRCbooks, "email"));
+        //    TXTrole.DataBindings.Add(new Binding("Text", SRCbooks, "role"));
+        //    TXTcity.DataBindings.Add(new Binding("Text", SRCbooks, "city"));
+        //    TXTcode.DataBindings.Add(new Binding("Text", SRCbooks, "code"));
+        //    TXTpassword.DataBindings.Add(new Binding("Text", SRCbooks, "password"));
+        //    TXTbirth.DataBindings.Add(new Binding("Text", SRCbooks, "birth_date"));
 
-            button1.DataBindings.Add(new Binding("Visible", CKUserlist, "Checked"));
-            listBox1.DataBindings.Add(new Binding("Visible", CKUserlist, "Checked"));
-            GRPinfo.DataBindings.Add(new Binding("Visible", CKUserlist, "Checked"));
+        //    button1.DataBindings.Add(new Binding("Visible", CKUserlist, "Checked"));
+        //    listBox1.DataBindings.Add(new Binding("Visible", CKUserlist, "Checked"));
+        //    GRPinfo.DataBindings.Add(new Binding("Visible", CKUserlist, "Checked"));
 
 
-            dataGridView1.DataBindings.Add(new Binding("Visible", CKuseradd, "Checked"));
-            button2.DataBindings.Add(new Binding("Visible", CKuseradd, "Checked"));
-        }
+        //    dataGridView1.DataBindings.Add(new Binding("Visible", CKuseradd, "Checked"));
+        //    button2.DataBindings.Add(new Binding("Visible", CKuseradd, "Checked"));
+        //}
 
         private void button1_Click_1(object sender, EventArgs e)
         {
@@ -122,6 +124,11 @@ namespace project_work
                 new User("","","","","","","","")
             };
             dataGridView1.DataSource = newuser;
+        }
+
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -21,7 +21,7 @@ namespace project_work
             InitializeComponent();
         }
 
-        public BindingList<User> users;
+        public BindingList<User> LSTusers;
         private string user;
         private string name;
 
@@ -29,7 +29,7 @@ namespace project_work
         {
             name = "eric";
             user = null;
-            users = JsonConvert.DeserializeObject<BindingList<User>>(File.ReadAllText(@"../../users1.json"));
+            LSTusers = JsonConvert.DeserializeObject<BindingList<User>>(File.ReadAllText(@"../../users1.json"));
             Form2 frm2= new Form2(this);
             frm2.Text = $"Admin {name}";
             frm2.Show();
@@ -37,7 +37,7 @@ namespace project_work
 
         private void button1_Click(object sender, EventArgs e)
         {
-            foreach (User utn in users)
+            foreach (User utn in LSTusers)
                 if (utn.password == textBox2.Text && utn.email == textBox3.Text) { 
                     user = utn.role;
                     name = utn.first_name; 
@@ -87,19 +87,21 @@ namespace project_work
         public string birth_date{get;set;}
 
     }
-    public class Libro {
+    public class Book {
 
-        public string ISBN { get; set; }
-        public string Titolo { get; set; }
-        public string Sottotitolo { get; set; }
-        public string Descrizione { get; set; }
-        public string Autori { get; set; }
-        public string Anno { get; set; }
-        public string Categorie { get; set; }
-        public string Immagine { get; set; }
-        public string Quantità { get; set; }
-        public string Mediavoti { get; set; }
-        public string Quantitàvoti { get; set; }
+        public string isbn { get; set; }
+        public string title { get; set; }
+        public string authors { get; set; }
+        public string subtitle { get; set; }
+        public string Description { get; set; }
+        public string categories { get; set; }
+        public string thumbnail { get; set; }
+        public string description{ get; set; }
+        public string published_year{ get; set; }
+        public string average_rating{ get; set; }
+        public string num_pages{ get; set; }
+        public string ratings_count{ get; set; }
+        public string qta{ get; set; }
     }
     public class Prestito
     {
