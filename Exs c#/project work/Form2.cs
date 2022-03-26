@@ -30,11 +30,22 @@ namespace project_work
         {
             LSTbooks = JsonConvert.DeserializeObject<BindingList<Book>>(File.ReadAllText(@"../../books1.json"));
             Library = new Dictionary<int, Book>();
-            
+
+            FillCMBfilters();
+
             foreach (Book utn in LSTbooks)
                 Library.Add(Library.Count, utn);
 
             Bindingusers();
+        }
+
+        private void FillCMBfilters()
+        {
+            CMBfilters.Items.Add("isbn");
+            CMBfilters.Items.Add("title");
+            CMBfilters.Items.Add("authors");
+            CMBfilters.Items.Add("subtitle");
+            CMBfilters.Items.Add("categories");
         }
 
         private void Bindingusers()
@@ -111,7 +122,9 @@ namespace project_work
         }
         void Refreshusers()
         {
+            //var LSTbackup = JsonConvert.DeserializeObject<BindingList<User>>(File.ReadAllText(@"../../users1.json"));
             File.WriteAllText(@"../../users1.json", JsonConvert.SerializeObject(LSTusers));
+            //LSTusers = LSTbackup;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -129,6 +142,33 @@ namespace project_work
         private void tabPage2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var filtro = from l in LSTbooks
+                         where Checkfilter(l)
+                         select l;
+
+        }
+
+        private bool Checkfilter(Book word)
+        {
+            switch (CMBfilters.Text)
+            {
+                case "isbn":
+                    return word.isbn == CMBfilters.Text;
+                case "title":
+                    return word.title == CMBfilters.Text;
+                case "authors":
+                    return word.authors == CMBfilters.Text;
+                case "categories":
+                    return word.categories == CMBfilters.Text;
+                case "subtitle":
+                    return word.subtitle == CMBfilters.Text;
+                default:
+                    return false;
+            }
         }
     }
 }
