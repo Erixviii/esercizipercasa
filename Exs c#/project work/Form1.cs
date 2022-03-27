@@ -63,52 +63,18 @@ namespace project_work
                 new Form3(this).Show();
         }
     }
-    public class User
+
+    public interface IsLoaned
     {
-        public User(string first_name, string last_name, string email, string role, string city, string code, string password, string birth_date)
-        {
-            this.first_name = first_name;
-            this.last_name = last_name;
-            this.email = email;
-            this.role = role;
-            this.city = city;
-            this.code = code;
-            this.password = password;
-            this.birth_date = birth_date;
-        }
-
-        public string first_name{get;set;}
-        public string last_name{get;set;}
-        public string email{get;set;}
-        public string role{get;set;}
-        public string city{get;set;}
-        public string code{get;set;}
-        public string password{get;set;}
-        public string birth_date{get;set;}
-
-    }
-    public class Book {
-
-        public string isbn { get; set; }
-        public string title { get; set; }
-        public string authors { get; set; }
-        public string subtitle { get; set; }
-        public string Description { get; set; }
-        public string categories { get; set; }
-        public string thumbnail { get; set; }
-        public string description{ get; set; }
-        public string published_year{ get; set; }
-        public string average_rating{ get; set; }
-        public string num_pages{ get; set; }
-        public string ratings_count{ get; set; }
-        public string qta{ get; set; }
+        bool IsLoaned { get;set; }
     }
     public class Prestito
     {
-        public string ISBNlibro{get;set;}
-        public string Codicefiscaleutente { get; set; }
-        public string Datainizioprestito { get; set; }
-        public string Datafineprestito { get; set; }
+        public string Isbn{get;set;}
+        public string Usercode { get; set; }
+        public string Initialdate { get; set; }
+        public string Enddate { get; set; }
         public string Rating { get; set; }
+        public Dictionary<User,BindingList<Book>> Loans { get; set; }   
     }   
 }
