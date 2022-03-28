@@ -64,9 +64,10 @@ namespace project_work
             LBLdescription.Click += new EventHandler(TypingTXT);
             IMGthumbnail.Click += new EventHandler(Loadimg);
 
-            TXTdinamic.VisibleChanged += new EventHandler(TypingTXT2);
-            SRCbooks.ListChanged += new ListChangedEventHandler(TypingTXT3);
+            SRCbooks.ListChanged += new ListChangedEventHandler(TypingTXT2);
         }
+
+        private object lastclicked;
 
         private void TypingTXT(object sender, EventArgs e)
         {
@@ -90,38 +91,31 @@ namespace project_work
                 TXTdinamic.Size = new Size(450,380);
                 TXTdinamic.Location= LBLdescription.Location;
             }
+            else if (lastclicked as Label == LBLdescription)
+                LBLdescription.Visible = true;
 
             if (sender as PictureBox == IMGthumbnail)
             {
                 IMGthumbnail.Visible = false;
-                url = true;
                 TXTdinamic.Location = IMGthumbnail.Location;
             }
-
-            TXTdinamic.DataBindings.Add(new Binding("Text", SRCbooks, (sender as Control).DataBindings[0].BindingMemberInfo.BindingMember));
-            TXTdinamic.Focus();
-        }
-
-        bool url;
-
-        private void TypingTXT2(object sender, EventArgs e)
-        {
+            else if (lastclicked as PictureBox == IMGthumbnail)
+            {
+                IMGthumbnail.Visible = true;
+                (SRCbooks.Current as Book).thumbnail = TXTdinamic.Text;
+            }
 
             if (!TXTdinamic.Visible)
                 TXTdinamic.Visible = false;
 
-            LBLdescription.Visible=true;
+            TXTdinamic.DataBindings.Add(new Binding("Text", SRCbooks, (sender as Control).DataBindings[0].BindingMemberInfo.BindingMember));
 
-            if (url)
-            {
-                IMGthumbnail.ImageLocation = TXTdinamic.Text;
-                url = false;
-            }  
+            lastclicked = sender;
 
-            IMGthumbnail.Visible = true;
+            TXTdinamic.Focus();
         }
 
-        private void TypingTXT3(object sender, ListChangedEventArgs e)
+        private void TypingTXT2(object sender, ListChangedEventArgs e)
         {
             TXTdinamic.Visible = false;
         }
