@@ -22,6 +22,5 @@
         public string code{get;set;}
         public string password{get;set;}
         public string birth_date{get;set;}
-
     }
 }

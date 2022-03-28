@@ -29,7 +29,9 @@ namespace project_work
         {
             name = "eric";
             user = null;
+
             LSTusers = JsonConvert.DeserializeObject<BindingList<User>>(File.ReadAllText(@"../../users1.json"));
+
             Form2 frm2= new Form2(this);
             frm2.Text = $"Admin {name}";
             frm2.Show();
@@ -68,13 +70,23 @@ namespace project_work
     {
         bool IsLoaned { get;set; }
     }
-    public class Prestito
+    public class Loan
     {
+        public Loan(string isbn, string usercode, string initialdate, string enddate, string rating, Dictionary<string, BindingList<Book>> loans)
+        {
+            Isbn = isbn;
+            Usercode = usercode;
+            Initialdate = initialdate;
+            Enddate = enddate;
+            Rating = rating;
+            Loans = new Dictionary<string, BindingList<Book>>();
+        }
+
         public string Isbn{get;set;}
         public string Usercode { get; set; }
         public string Initialdate { get; set; }
         public string Enddate { get; set; }
         public string Rating { get; set; }
-        public Dictionary<User,BindingList<Book>> Loans { get; set; }   
+        public Dictionary<string,BindingList<Book>> Loans { get; set; }   
     }   
 }

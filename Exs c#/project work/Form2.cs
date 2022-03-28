@@ -67,12 +67,14 @@ namespace project_work
             TXTdinamic.VisibleChanged += new EventHandler(TypingTXT2);
             SRCbooks.ListChanged += new ListChangedEventHandler(TypingTXT3);
         }
+
         private void TypingTXT(object sender, EventArgs e)
         {
             CMBfilters.Focus();
 
             try { TXTdinamic.DataBindings.RemoveAt(0); } catch { }
 
+            TXTdinamic.Size = new Size(135, 22);
             TXTdinamic.ScrollBars = ScrollBars.None;
             TXTdinamic.Multiline = false;
             TXTdinamic.Height = 22;
@@ -82,39 +84,41 @@ namespace project_work
 
             if (sender as Label == LBLdescription)
             {
-                Point lastloc = LBLdescription.Location;
                 LBLdescription.Visible = false; 
                 TXTdinamic.Multiline = true;
                 TXTdinamic.ScrollBars = ScrollBars.Both;
                 TXTdinamic.Size = new Size(450,380);
-                TXTdinamic.Location= lastloc;
+                TXTdinamic.Location= LBLdescription.Location;
             }
 
             if (sender as PictureBox == IMGthumbnail)
             {
                 IMGthumbnail.Visible = false;
+                url = true;
                 TXTdinamic.Location = IMGthumbnail.Location;
-                IMGthumbnail.VisibleChanged += new EventHandler(Thumbchanged);
             }
 
             TXTdinamic.DataBindings.Add(new Binding("Text", SRCbooks, (sender as Control).DataBindings[0].BindingMemberInfo.BindingMember));
-            
             TXTdinamic.Focus();
         }
 
-        private void Thumbchanged(object sender, EventArgs e)
-        {
-            (sender as PictureBox).ImageLocation = TXTdinamic.Text;
-            IMGthumbnail.VisibleChanged -= Thumbchanged;
-        }
+        bool url;
 
         private void TypingTXT2(object sender, EventArgs e)
         {
+
             if (!TXTdinamic.Visible)
                 TXTdinamic.Visible = false;
+
             LBLdescription.Visible=true;
-            if(IMGthumbnail.Visible == false)
-                IMGthumbnail.Visible=true;
+
+            if (url)
+            {
+                IMGthumbnail.ImageLocation = TXTdinamic.Text;
+                url = false;
+            }  
+
+            IMGthumbnail.Visible = true;
         }
 
         private void TypingTXT3(object sender, ListChangedEventArgs e)
@@ -228,6 +232,8 @@ namespace project_work
             {
                 new User("","","","","","","","")
             };
+
+            
             dataGridView1.DataSource = newuser;
 
             Reloadjsons(this, null);
@@ -314,6 +320,7 @@ namespace project_work
         private void Searching(object sender, CancelEventArgs e)
         {
             try { IMGthumbnail.Image = Image.FromFile((sender as OpenFileDialog).FileName); } catch { }
+            IMGthumbnail.Visible = true;
         }
 
         private void button3_Click(object sender, EventArgs e)
