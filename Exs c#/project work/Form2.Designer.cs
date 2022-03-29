@@ -29,7 +29,7 @@ namespace project_work
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -88,12 +88,13 @@ namespace project_work
             this.TXTdinamic = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.GRPloan = new System.Windows.Forms.GroupBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.CMBloanisbn = new System.Windows.Forms.ComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.GRPinfo.SuspendLayout();
@@ -102,7 +103,7 @@ namespace project_work
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IMGthumbnail)).BeginInit();
             this.tabPage3.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.GRPloan.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -187,7 +188,7 @@ namespace project_work
             this.label6.Location = new System.Drawing.Point(20, 75);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(40, 16);
+            this.label6.Size = new System.Drawing.Size(41, 16);
             this.label6.TabIndex = 23;
             this.label6.Text = "email";
             // 
@@ -205,7 +206,7 @@ namespace project_work
             this.label8.Location = new System.Drawing.Point(20, 20);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(41, 16);
+            this.label8.Size = new System.Drawing.Size(42, 16);
             this.label8.TabIndex = 21;
             this.label8.Text = "name";
             // 
@@ -223,7 +224,7 @@ namespace project_work
             this.label7.Location = new System.Drawing.Point(215, 20);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(59, 16);
+            this.label7.Size = new System.Drawing.Size(60, 16);
             this.label7.TabIndex = 22;
             this.label7.Text = "surname";
             // 
@@ -241,7 +242,7 @@ namespace project_work
             this.label5.Location = new System.Drawing.Point(215, 75);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(30, 16);
+            this.label5.Size = new System.Drawing.Size(31, 16);
             this.label5.TabIndex = 24;
             this.label5.Text = "role";
             // 
@@ -259,7 +260,7 @@ namespace project_work
             this.label4.Location = new System.Drawing.Point(20, 129);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(66, 16);
+            this.label4.Size = new System.Drawing.Size(67, 16);
             this.label4.TabIndex = 25;
             this.label4.Text = "password";
             // 
@@ -277,7 +278,7 @@ namespace project_work
             this.label3.Location = new System.Drawing.Point(216, 185);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(27, 16);
+            this.label3.Size = new System.Drawing.Size(28, 16);
             this.label3.TabIndex = 26;
             this.label3.Text = "city";
             // 
@@ -295,7 +296,7 @@ namespace project_work
             this.label2.Location = new System.Drawing.Point(20, 185);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(38, 16);
+            this.label2.Size = new System.Drawing.Size(39, 16);
             this.label2.TabIndex = 27;
             this.label2.Text = "code";
             // 
@@ -313,7 +314,7 @@ namespace project_work
             this.label1.Location = new System.Drawing.Point(216, 129);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(32, 16);
+            this.label1.Size = new System.Drawing.Size(33, 16);
             this.label1.TabIndex = 28;
             this.label1.Text = "birth";
             // 
@@ -333,7 +334,7 @@ namespace project_work
             this.CKUserlist.Location = new System.Drawing.Point(85, 76);
             this.CKUserlist.Margin = new System.Windows.Forms.Padding(4);
             this.CKUserlist.Name = "CKUserlist";
-            this.CKUserlist.Size = new System.Drawing.Size(70, 20);
+            this.CKUserlist.Size = new System.Drawing.Size(71, 20);
             this.CKUserlist.TabIndex = 6;
             this.CKUserlist.Text = "See list";
             this.CKUserlist.UseVisualStyleBackColor = true;
@@ -346,16 +347,16 @@ namespace project_work
             this.CKuseradd.Location = new System.Drawing.Point(269, 76);
             this.CKuseradd.Margin = new System.Windows.Forms.Padding(4);
             this.CKuseradd.Name = "CKuseradd";
-            this.CKuseradd.Size = new System.Drawing.Size(51, 20);
+            this.CKuseradd.Size = new System.Drawing.Size(52, 20);
             this.CKuseradd.TabIndex = 12;
             this.CKuseradd.Text = "Add";
             this.CKuseradd.UseVisualStyleBackColor = true;
             // 
             // dataGridView1
             // 
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -501,7 +502,7 @@ namespace project_work
             this.LBLdescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LBLdescription.MaximumSize = new System.Drawing.Size(391, 368);
             this.LBLdescription.Name = "LBLdescription";
-            this.LBLdescription.Size = new System.Drawing.Size(391, 368);
+            this.LBLdescription.Size = new System.Drawing.Size(389, 368);
             this.LBLdescription.TabIndex = 51;
             this.LBLdescription.Text = resources.GetString("LBLdescription.Text");
             // 
@@ -511,7 +512,7 @@ namespace project_work
             this.label12.Location = new System.Drawing.Point(512, 21);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(75, 16);
+            this.label12.Size = new System.Drawing.Size(76, 16);
             this.label12.TabIndex = 50;
             this.label12.Text = "Description";
             // 
@@ -522,7 +523,7 @@ namespace project_work
             this.LBLisbn.Location = new System.Drawing.Point(248, 215);
             this.LBLisbn.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LBLisbn.Name = "LBLisbn";
-            this.LBLisbn.Size = new System.Drawing.Size(32, 16);
+            this.LBLisbn.Size = new System.Drawing.Size(33, 16);
             this.LBLisbn.TabIndex = 49;
             this.LBLisbn.Text = "isbn";
             // 
@@ -532,7 +533,7 @@ namespace project_work
             this.label9.Location = new System.Drawing.Point(55, 215);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(194, 16);
+            this.label9.Size = new System.Drawing.Size(195, 16);
             this.label9.TabIndex = 48;
             this.label9.Text = "Isbn......................................................";
             // 
@@ -542,7 +543,7 @@ namespace project_work
             this.label19.Location = new System.Drawing.Point(53, 285);
             this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(195, 16);
+            this.label19.Size = new System.Drawing.Size(196, 16);
             this.label19.TabIndex = 42;
             this.label19.Text = "Subtitle................................................";
             // 
@@ -552,7 +553,7 @@ namespace project_work
             this.label20.Location = new System.Drawing.Point(53, 238);
             this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(195, 16);
+            this.label20.Size = new System.Drawing.Size(196, 16);
             this.label20.TabIndex = 40;
             this.label20.Text = "Title......................................................";
             // 
@@ -562,7 +563,7 @@ namespace project_work
             this.label21.Location = new System.Drawing.Point(53, 260);
             this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(195, 16);
+            this.label21.Size = new System.Drawing.Size(196, 16);
             this.label21.TabIndex = 41;
             this.label21.Text = "Author..................................................";
             // 
@@ -572,7 +573,7 @@ namespace project_work
             this.label22.Location = new System.Drawing.Point(53, 310);
             this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(194, 16);
+            this.label22.Size = new System.Drawing.Size(195, 16);
             this.label22.TabIndex = 43;
             this.label22.Text = "Category............................................";
             // 
@@ -582,7 +583,7 @@ namespace project_work
             this.label23.Location = new System.Drawing.Point(54, 336);
             this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(194, 16);
+            this.label23.Size = new System.Drawing.Size(195, 16);
             this.label23.TabIndex = 44;
             this.label23.Text = "Published in......................................";
             // 
@@ -592,7 +593,7 @@ namespace project_work
             this.label24.Location = new System.Drawing.Point(54, 386);
             this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(193, 16);
+            this.label24.Size = new System.Drawing.Size(194, 16);
             this.label24.TabIndex = 45;
             this.label24.Text = "Quantity..............................................";
             // 
@@ -602,7 +603,7 @@ namespace project_work
             this.label25.Location = new System.Drawing.Point(54, 412);
             this.label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(194, 16);
+            this.label25.Size = new System.Drawing.Size(195, 16);
             this.label25.TabIndex = 46;
             this.label25.Text = "Pages.................................................";
             // 
@@ -612,7 +613,7 @@ namespace project_work
             this.label26.Location = new System.Drawing.Point(53, 361);
             this.label26.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(194, 16);
+            this.label26.Size = new System.Drawing.Size(195, 16);
             this.label26.TabIndex = 47;
             this.label26.Text = "Average rating.................................";
             // 
@@ -664,7 +665,7 @@ namespace project_work
             this.LBLsubtitle.Location = new System.Drawing.Point(247, 285);
             this.LBLsubtitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LBLsubtitle.Name = "LBLsubtitle";
-            this.LBLsubtitle.Size = new System.Drawing.Size(49, 16);
+            this.LBLsubtitle.Size = new System.Drawing.Size(50, 16);
             this.LBLsubtitle.TabIndex = 23;
             this.LBLsubtitle.Text = "subtitle";
             // 
@@ -675,7 +676,7 @@ namespace project_work
             this.LBLtitle.Location = new System.Drawing.Point(247, 238);
             this.LBLtitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LBLtitle.Name = "LBLtitle";
-            this.LBLtitle.Size = new System.Drawing.Size(27, 16);
+            this.LBLtitle.Size = new System.Drawing.Size(28, 16);
             this.LBLtitle.TabIndex = 21;
             this.LBLtitle.Text = "title";
             // 
@@ -686,7 +687,7 @@ namespace project_work
             this.LBLauthors.Location = new System.Drawing.Point(247, 260);
             this.LBLauthors.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LBLauthors.Name = "LBLauthors";
-            this.LBLauthors.Size = new System.Drawing.Size(51, 16);
+            this.LBLauthors.Size = new System.Drawing.Size(52, 16);
             this.LBLauthors.TabIndex = 22;
             this.LBLauthors.Text = "authors";
             // 
@@ -697,7 +698,7 @@ namespace project_work
             this.LBLcategories.Location = new System.Drawing.Point(247, 310);
             this.LBLcategories.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LBLcategories.Name = "LBLcategories";
-            this.LBLcategories.Size = new System.Drawing.Size(71, 16);
+            this.LBLcategories.Size = new System.Drawing.Size(72, 16);
             this.LBLcategories.TabIndex = 24;
             this.LBLcategories.Text = "categories";
             // 
@@ -708,7 +709,7 @@ namespace project_work
             this.LBLpublished_year.Location = new System.Drawing.Point(248, 336);
             this.LBLpublished_year.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LBLpublished_year.Name = "LBLpublished_year";
-            this.LBLpublished_year.Size = new System.Drawing.Size(96, 16);
+            this.LBLpublished_year.Size = new System.Drawing.Size(97, 16);
             this.LBLpublished_year.TabIndex = 25;
             this.LBLpublished_year.Text = "published year";
             // 
@@ -719,7 +720,7 @@ namespace project_work
             this.LBLqta.Location = new System.Drawing.Point(248, 386);
             this.LBLqta.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LBLqta.Name = "LBLqta";
-            this.LBLqta.Size = new System.Drawing.Size(32, 16);
+            this.LBLqta.Size = new System.Drawing.Size(33, 16);
             this.LBLqta.TabIndex = 26;
             this.LBLqta.Text = "qta. ";
             // 
@@ -730,7 +731,7 @@ namespace project_work
             this.LBLpages.Location = new System.Drawing.Point(248, 412);
             this.LBLpages.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LBLpages.Name = "LBLpages";
-            this.LBLpages.Size = new System.Drawing.Size(46, 16);
+            this.LBLpages.Size = new System.Drawing.Size(47, 16);
             this.LBLpages.TabIndex = 27;
             this.LBLpages.Text = "pages";
             // 
@@ -741,7 +742,7 @@ namespace project_work
             this.LBLaverage_rating.Location = new System.Drawing.Point(247, 361);
             this.LBLaverage_rating.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LBLaverage_rating.Name = "LBLaverage_rating";
-            this.LBLaverage_rating.Size = new System.Drawing.Size(94, 16);
+            this.LBLaverage_rating.Size = new System.Drawing.Size(95, 16);
             this.LBLaverage_rating.TabIndex = 28;
             this.LBLaverage_rating.Text = "average rating";
             // 
@@ -774,7 +775,7 @@ namespace project_work
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.groupBox2);
+            this.tabPage3.Controls.Add(this.GRPloan);
             this.tabPage3.Location = new System.Drawing.Point(4, 39);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(1101, 609);
@@ -782,51 +783,67 @@ namespace project_work
             this.tabPage3.Text = "Loans";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // groupBox2
+            // GRPloan
             // 
-            this.groupBox2.Controls.Add(this.label11);
-            this.groupBox2.Controls.Add(this.label10);
-            this.groupBox2.Controls.Add(this.comboBox1);
-            this.groupBox2.Controls.Add(this.textBox1);
-            this.groupBox2.Location = new System.Drawing.Point(494, 49);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(470, 162);
-            this.groupBox2.TabIndex = 2;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "groupBox2";
+            this.GRPloan.Controls.Add(this.button1);
+            this.GRPloan.Controls.Add(this.label11);
+            this.GRPloan.Controls.Add(this.label10);
+            this.GRPloan.Controls.Add(this.CMBloanisbn);
+            this.GRPloan.Controls.Add(this.textBox1);
+            this.GRPloan.Location = new System.Drawing.Point(494, 49);
+            this.GRPloan.Name = "GRPloan";
+            this.GRPloan.Size = new System.Drawing.Size(500, 96);
+            this.GRPloan.TabIndex = 2;
+            this.GRPloan.TabStop = false;
+            this.GRPloan.Text = "Add Loan";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(218, 29);
+            this.label11.Location = new System.Drawing.Point(250, 29);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(70, 16);
+            this.label11.Size = new System.Drawing.Size(71, 16);
             this.label11.TabIndex = 3;
             this.label11.Text = "User code";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(109, 29);
+            this.label10.Location = new System.Drawing.Point(99, 29);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(32, 16);
+            this.label10.Size = new System.Drawing.Size(33, 16);
             this.label10.TabIndex = 2;
             this.label10.Text = "Isbn";
             // 
-            // comboBox1
+            // CMBloanisbn
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(72, 48);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 24);
-            this.comboBox1.TabIndex = 0;
+            this.CMBloanisbn.FormattingEnabled = true;
+            this.CMBloanisbn.Location = new System.Drawing.Point(59, 48);
+            this.CMBloanisbn.Name = "CMBloanisbn";
+            this.CMBloanisbn.Size = new System.Drawing.Size(121, 24);
+            this.CMBloanisbn.TabIndex = 0;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(199, 48);
+            this.textBox1.Location = new System.Drawing.Point(206, 50);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(104, 22);
+            this.textBox1.Size = new System.Drawing.Size(156, 22);
             this.textBox1.TabIndex = 1;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.MediumAquamarine;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.Black;
+            this.button1.Location = new System.Drawing.Point(386, 43);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(85, 32);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "Add";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // Form2
             // 
@@ -855,8 +872,8 @@ namespace project_work
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IMGthumbnail)).EndInit();
             this.tabPage3.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.GRPloan.ResumeLayout(false);
+            this.GRPloan.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -920,11 +937,12 @@ namespace project_work
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ComboBox CMBloanisbn;
+        private System.Windows.Forms.GroupBox GRPloan;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox textBox1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Button button1;
     }
 }

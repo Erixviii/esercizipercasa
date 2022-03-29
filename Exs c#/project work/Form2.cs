@@ -17,6 +17,7 @@ namespace project_work
     {
         private BindingList<User> LSTusers;
         private BindingList<Book> LSTbooks;
+        private BindingList<Book> LSTloans;
         private List<User> newuser;
         private BindingSource SRCusers;
         private BindingSource SRCbooks;
@@ -42,6 +43,10 @@ namespace project_work
             Bindingusers();
             Bindingbooks();
             EventHandling();
+
+            CMBfilters.DataSource = SRCbooks;
+            CMBfilters.DisplayMember = "isbn";
+
             Reloadjsons(this, null);
         }
         private void EventHandling()
@@ -166,6 +171,8 @@ namespace project_work
             LBLdescription.DataBindings.Add(new Binding("Text", SRCbooks, "description"));
             IMGthumbnail.DataBindings.Add(new Binding("ImageLocation", SRCbooks, "thumbnail"));
         }
+
+
 
         private void Bindingusers()
         {
@@ -328,6 +335,20 @@ namespace project_work
             button.BackColor = button6.BackColor;
             button6.Text = lasttxt;
             button6.BackColor = lastcolor;
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            if (Checkloan())
+            {
+                .
+                LSTloans.Add(new Loan)
+            }
+        }
+
+        private bool Checkloan()
+        {
+            return true;
         }
     }
 }

@@ -72,7 +72,7 @@ namespace project_work
     }
     public class Loan
     {
-        public Loan(string isbn, string usercode, string initialdate, string enddate, string rating, Dictionary<string, BindingList<Book>> loans)
+        public Loan(string isbn, string usercode, DateTime initialdate, DateTime enddate, string rating, Dictionary<string, BindingList<Book>> loans)
         {
             Isbn = isbn;
             Usercode = usercode;
@@ -84,8 +84,8 @@ namespace project_work
 
         public string Isbn{get;set;}
         public string Usercode { get; set; }
-        public string Initialdate { get; set; }
-        public string Enddate { get; set; }
+        public DateTime Initialdate { get; set; }
+        public DateTime Enddate { get; }
         public string Rating { get; set; }
         public Dictionary<string,BindingList<Book>> Loans { get; set; }   
     }   
