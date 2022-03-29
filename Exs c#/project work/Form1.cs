@@ -22,7 +22,7 @@ namespace project_work
 
         public BindingList<User> LSTusers;
         public User userlogged;
-        private bool access=true;
+        private bool access;
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -33,6 +33,7 @@ namespace project_work
         {
             foreach (User utn in LSTusers)
                 if (utn.password == textBox2.Text && utn.Email == textBox3.Text) { 
+                    userlogged= utn;
                     access = true;
                 }
 
