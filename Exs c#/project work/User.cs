@@ -26,10 +26,18 @@ namespace project_work
             this.birth_date = birth_date;
             bookedbooks=new BindingList<Book>();
         }
-
+        private string email;
         public string first_name{get;set;}
         public string last_name{get;set;}
-        public string email { get { return email; } set { if (!email.Contains("@") || !email.Contains(".")) MessageBox.Show("email errata"); else email = value; }}
+        public string Email 
+        { 
+            get { return email; } 
+            set { 
+                if (value.Contains("@") && value.Contains("."))
+                    email = value; 
+                else 
+                    MessageBox.Show("email errata"); 
+            }}
         public string role{get;set;}
         public string city{get;set;}
         public string code{get;set;}

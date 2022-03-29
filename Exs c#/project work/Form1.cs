@@ -27,14 +27,12 @@ namespace project_work
         private void Form1_Load(object sender, EventArgs e)
         {
             LSTusers = JsonConvert.DeserializeObject<BindingList<User>>(File.ReadAllText(@"../../users.json"));
-
-            userlogged = new User("Bettine", "Haggie", "bhaggie0", "admin", "Murfreesboro", "TYJIKR47F60M553C", "dIIosgaCb4w", "02/06/1962");
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             foreach (User utn in LSTusers)
-                if (utn.password == textBox2.Text && utn.email == textBox3.Text) { 
+                if (utn.password == textBox2.Text && utn.Email == textBox3.Text) { 
                     access = true;
                 }
 

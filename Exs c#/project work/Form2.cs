@@ -239,7 +239,6 @@ namespace project_work
 
                 DGVloans.Columns[10].Visible=false;
                 DGVloans.Columns[11].Visible = false;
-                DGVloans.Columns[12].Visible = false;
             }
 
             try
@@ -507,10 +506,10 @@ namespace project_work
             }
             catch { }
 
-
-            foreach (Book item in LSTbooks)
-                if(item.isbn == (SRCloans.Current as Loan).Isbn)
-                    item.qta= (int.Parse(item.qta) + 1).ToString();
+            if(DGVloans.Rows.Count != 0)
+                foreach (Book item in LSTbooks)
+                    if(item.isbn == (SRCloans.Current as Loan).Isbn)
+                        item.qta= (int.Parse(item.qta) + 1).ToString();
 
             Reloadjsons(this, null);
         }
