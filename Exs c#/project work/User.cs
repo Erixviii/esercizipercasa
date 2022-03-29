@@ -29,7 +29,7 @@ namespace project_work
 
         public string first_name{get;set;}
         public string last_name{get;set;}
-        public string email{get;set;}
+        public string email { get { return email; } set { if (!email.Contains("@") || !email.Contains(".")) MessageBox.Show("email errata"); else email = value; }}
         public string role{get;set;}
         public string city{get;set;}
         public string code{get;set;}
