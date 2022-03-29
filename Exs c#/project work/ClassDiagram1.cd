@@ -6,13 +6,19 @@
       <HashCode>AAAAAARAQAAAAAAIIAABAEAUAAAAAJAAQAAAAAAAAAA=</HashCode>
       <FileName>Book.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
   </Class>
   <Class Name="project_work.User">
-    <Position X="3.75" Y="2" Width="1.5" />
+    <Position X="4.25" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAQAgAAAACBAAIAAAAAAAAAAAAgAAYAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAQAgAAAACBAAIAAAAAAQAAAAAgAAYAA=</HashCode>
       <FileName>User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="project_work.Loan">
+    <Position X="7.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAwAABAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Loan.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

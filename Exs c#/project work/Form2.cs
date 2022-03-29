@@ -15,59 +15,89 @@ namespace project_work
 {
     public partial class Form2 : Form
     {
+        public bool isAdmin;
+        public User user;
         private BindingList<User> LSTusers;
         private BindingList<Book> LSTbooks;
-        private BindingList<Book> LSTloans;
+        private BindingList<Loan> LSTloans;
         private List<User> newuser;
         private BindingSource SRCusers;
         private BindingSource SRCbooks;
-        private Dictionary<int,Book> Library;
+        private BindingSource SRCbookedbooks;
+        private BindingSource SRCloans;
+        private Dictionary<string,Book> Library;
+        private Dictionary<string, User> Accesses;
         private delegate void Delegaterefresh(object sender, ListChangedEventArgs e);
         Delegaterefresh Reloadjsons;
         public Form2(Form1 back)
         {
             InitializeComponent();
             LSTusers = back.LSTusers;
+            user = back.userlogged;
         }
 
         private void Form2_Load(object sender, EventArgs e)
         {
-
-            LSTbooks = JsonConvert.DeserializeObject<BindingList<Book>>(File.ReadAllText(@"../../books1.json"));
-            Library = new Dictionary<int, Book>();
+          
+            LSTbooks = JsonConvert.DeserializeObject<BindingList<Book>>(File.ReadAllText(@"../../books.json"));
+            Library = new Dictionary<string, Book>();
+            Accesses = new Dictionary<string, User>();
 
             foreach (Book utn in LSTbooks)
-                Library.Add(Library.Count, utn);
+                Library.Add(utn.isbn, utn);
+            foreach (User ur in LSTusers)
+                Accesses.Add(ur.code, ur);
+
+            if (!isAdmin)
+                Userdisplay();
 
             FillCMBfilters();
             Bindingusers();
             Bindingbooks();
+            Bindingloans();
             EventHandling();
-
-            CMBfilters.DataSource = SRCbooks;
-            CMBfilters.DisplayMember = "isbn";
 
             Reloadjsons(this, null);
         }
+
+        private void Userdisplay()
+        {
+            TABmain.TabPages.RemoveAt(0);
+            BTNaddbook.Visible = false;
+            BTNdeletebook.Visible = false; 
+            GRPremoveloan.Visible = false;
+            GRPaddloan.Visible = false;
+
+            BTNbook.Visible = true;
+
+            DGVloans.Left = Width/2 - DGVloans.Width/2;
+            DGVloans.Dock = DockStyle.Fill;
+        }
+
         private void EventHandling()
         {
             Reloadjsons = new Delegaterefresh(Refreshusers);
             Reloadjsons += new Delegaterefresh(Refreshbooks);
+            Reloadjsons += new Delegaterefresh(Refreshloans);
 
+            
             LSTusers.ListChanged += new ListChangedEventHandler(Refreshusers);
             LSTbooks.ListChanged += new ListChangedEventHandler(Refreshbooks);
+            LSTloans.ListChanged += new ListChangedEventHandler(Refreshloans);
 
-            LBLisbn.Click += new EventHandler(TypingTXT);
-            LBLtitle.Click += new EventHandler(TypingTXT);
-            LBLauthors.Click += new EventHandler(TypingTXT);
-            LBLsubtitle.Click += new EventHandler(TypingTXT);
-            LBLcategories.Click += new EventHandler(TypingTXT);
-            LBLpublished_year.Click += new EventHandler(TypingTXT);
-            LBLaverage_rating.Click += new EventHandler(TypingTXT);
-            LBLqta.Click += new EventHandler(TypingTXT);
-            LBLpages.Click += new EventHandler(TypingTXT);
-            LBLdescription.Click += new EventHandler(TypingTXT);
-            IMGthumbnail.Click += new EventHandler(Loadimg);
+
+            if(isAdmin)
+                LBLisbn.Click += new EventHandler(TypingTXT);
+                LBLtitle.Click += new EventHandler(TypingTXT);
+                LBLauthors.Click += new EventHandler(TypingTXT);
+                LBLsubtitle.Click += new EventHandler(TypingTXT);
+                LBLcategories.Click += new EventHandler(TypingTXT);
+                LBLpublished_year.Click += new EventHandler(TypingTXT);
+                LBLaverage_rating.Click += new EventHandler(TypingTXT);
+                LBLqta.Click += new EventHandler(TypingTXT);
+                LBLpages.Click += new EventHandler(TypingTXT);
+                LBLdescription.Click += new EventHandler(TypingTXT);
+                IMGthumbnail.Click += new EventHandler(Loadimg);
 
             SRCbooks.ListChanged += new ListChangedEventHandler(TypingTXT2);
         }
@@ -146,6 +176,9 @@ namespace project_work
             {
                 DataSource = LSTfiltered
             };
+            
+            CMBloanisbn.DataSource = SRCbooks;
+            CMBloanisbn.DisplayMember = "isbn";
 
             try { LBLisbn.DataBindings.RemoveAt(0);} catch {}
             try { LBLtitle.DataBindings.RemoveAt(0);}catch{}
@@ -172,17 +205,58 @@ namespace project_work
             IMGthumbnail.DataBindings.Add(new Binding("ImageLocation", SRCbooks, "thumbnail"));
         }
 
+        private void Bindingloans()
+        {
 
+            listBox1.DataSource = SRCusers;
+            listBox1.DisplayMember = "first_name";
+            CMBloancode.DataSource = SRCusers;
+            CMBloancode.DisplayMember = "code";
+
+            try { LSTloans = JsonConvert.DeserializeObject<BindingList<Loan>>(File.ReadAllText(@"../../loans.json"));}
+            catch { LSTloans = new BindingList<Loan>(); }
+
+            DGVloans.AutoGenerateColumns = false;
+
+            SRCloans = new BindingSource()
+            {
+                DataSource = LSTloans
+            };
+
+            if (isAdmin)
+                DGVloans.DataSource = SRCloans;
+            else
+            {
+                DGVloans.Columns.Clear();
+
+                DGVloans.AutoGenerateColumns = true;
+                SRCbookedbooks = new BindingSource()
+                {
+                    DataSource = Accesses[user.code].bookedbooks
+                };
+
+                DGVloans.DataSource = SRCbookedbooks;
+
+                DGVloans.Columns[10].Visible=false;
+                DGVloans.Columns[11].Visible = false;
+                DGVloans.Columns[12].Visible = false;
+            }
+
+            try
+            {
+                DGVloans.Columns.Remove("Rating");
+                DGVloans.Columns.Remove("Loans");
+            }
+            catch { }
+        }
 
         private void Bindingusers()
         {
+
             SRCusers = new BindingSource()
             {
                 DataSource = LSTusers
             };
-
-            listBox1.DataSource = SRCusers;
-            listBox1.DisplayMember = "first_name";
 
             newuser = new List<User>()
             {
@@ -205,6 +279,7 @@ namespace project_work
 
             dataGridView1.DataBindings.Add(new Binding("Visible", CKuseradd, "Checked"));
             button2.DataBindings.Add(new Binding("Visible", CKuseradd, "Checked"));
+
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -215,13 +290,19 @@ namespace project_work
         private void Refreshusers(object sender, ListChangedEventArgs e)
         {
             //var LSTbackup = JsonConvert.DeserializeObject<BindingList<User>>(File.ReadAllText(@"../../users1.json"));
-            File.WriteAllText(@"../../users1.json", JsonConvert.SerializeObject(LSTusers));
+            File.WriteAllText(@"../../users.json", JsonConvert.SerializeObject(LSTusers));
             //LSTusers = LSTbackup;
         }
         private void Refreshbooks(object sender, ListChangedEventArgs e)
         {
             //var LSTbackup = JsonConvert.DeserializeObject<BindingList<User>>(File.ReadAllText(@"../../users1.json"));
-            File.WriteAllText(@"../../books1.json", JsonConvert.SerializeObject(LSTbooks));
+            File.WriteAllText(@"../../books.json", JsonConvert.SerializeObject(LSTbooks));
+            //LSTusers = LSTbackup;
+        }
+        private void Refreshloans(object sender, ListChangedEventArgs e)
+        {
+            //var LSTbackup = JsonConvert.DeserializeObject<BindingList<User>>(File.ReadAllText(@"../../users1.json"));
+            File.WriteAllText(@"../../loans.json", JsonConvert.SerializeObject(LSTloans));
             //LSTusers = LSTbackup;
         }
 
@@ -331,24 +412,112 @@ namespace project_work
             string lasttxt = button.Text;
             Color lastcolor = button.BackColor;
 
-            button.Text = button6.Text;
-            button.BackColor = button6.BackColor;
-            button6.Text = lasttxt;
-            button6.BackColor = lastcolor;
+            button.Text = BTNdeletebook.Text;
+            button.BackColor = BTNdeletebook.BackColor;
+            BTNdeletebook.Text = lasttxt;
+            BTNdeletebook.BackColor = lastcolor;
         }
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            if (Checkloan())
+            if (Checkloan(sender as Button) && sender as Button == BTNloan)
             {
-                .
-                LSTloans.Add(new Loan)
+                int qta = 0;
+
+                foreach (Book item in LSTbooks)
+                    if (item.isbn == (SRCloans.Current as Loan).Isbn)
+                    {
+                        qta = int.Parse(item.qta) - 1;
+                        item.qta = (int.Parse(item.qta) - 1).ToString();
+                    }
+
+                if (qta > 0)
+                {
+
+                    if (Accesses[CMBloancode.Text].bookedbooks.Count == 3)
+                        MessageBox.Show("max 3 loans...");
+                    else
+                    {
+                        LSTloans.Insert(0, new Loan(CMBloanisbn.Text, CMBloancode.Text, DateTime.Today, DateTime.Today.AddDays(30), "0"));
+                        Accesses[CMBloancode.Text].bookedbooks.Add(Library[CMBloanisbn.Text]);
+
+                    }
+                }
+                else
+                    MessageBox.Show("libro esaurito");
+
             }
+            if (Checkloan(sender as Button) && sender as Button == BTNbook)
+            {
+
+                if (int.Parse(Library[(SRCbooks.Current as Book).isbn].qta) > 0)
+                {
+
+                    if (Accesses[user.code].bookedbooks.Count == 3)
+                    {
+                        MessageBox.Show("max 3 loans...");
+                    }
+                    else
+                    {
+                        LSTloans.Insert(0, new Loan(LBLisbn.Text, user.code, DateTime.Today, DateTime.Today.AddDays(30), "0"));
+                        Accesses[user.code].bookedbooks.Add(SRCbooks.Current as Book);
+                        Library[(SRCbooks.Current as Book).isbn].qta = (int.Parse(Library[(SRCbooks.Current as Book).isbn].qta) - 1).ToString();
+                    
+                    }
+                }
+                else
+                    MessageBox.Show("libro esaurito");
+            }
+
+            Reloadjsons(this, null);
         }
 
-        private bool Checkloan()
+        private bool Checkloan(Button btn)
         {
+            string isbn;
+            string code;
+            if (btn == BTNloan)
+            {
+                isbn = CMBloanisbn.Text;
+                code= CMBloancode.Text;
+            }
+            else { 
+                isbn = (SRCbooks.Current as Book).isbn;
+                code = user.code;
+            }
+                
+
+            foreach (Book b in Accesses[code].bookedbooks)
+                if (b.isbn == isbn)
+                {
+                    MessageBox.Show("già inserito");
+                    return false;
+                }
             return true;
+        }
+
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            try { SRCloans.RemoveCurrent(); }catch { }
+            try
+            {
+                    
+                    Accesses[CMBloancode.Text].bookedbooks.Remove(Library[CMBloanisbn.Text]);
+            }
+            catch { }
+
+
+            foreach (Book item in LSTbooks)
+                if(item.isbn == (SRCloans.Current as Loan).Isbn)
+                    item.qta= (int.Parse(item.qta) + 1).ToString();
+
+            Reloadjsons(this, null);
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

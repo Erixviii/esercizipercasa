@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -22,71 +21,47 @@ namespace project_work
         }
 
         public BindingList<User> LSTusers;
-        private string user;
-        private string name;
+        public User userlogged;
+        private bool access=true;
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            name = "eric";
-            user = null;
+            LSTusers = JsonConvert.DeserializeObject<BindingList<User>>(File.ReadAllText(@"../../users.json"));
 
-            LSTusers = JsonConvert.DeserializeObject<BindingList<User>>(File.ReadAllText(@"../../users1.json"));
-
-            Form2 frm2= new Form2(this);
-            frm2.Text = $"Admin {name}";
-            frm2.Show();
+            userlogged = new User("Bettine", "Haggie", "bhaggie0", "admin", "Murfreesboro", "TYJIKR47F60M553C", "dIIosgaCb4w", "02/06/1962");
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             foreach (User utn in LSTusers)
                 if (utn.password == textBox2.Text && utn.email == textBox3.Text) { 
-                    user = utn.role;
-                    name = utn.first_name; 
+                    access = true;
                 }
 
-            if (user!=null)
-                Quit(user);
+            if (access)
+                Quit(userlogged.role);
             else
                 MessageBox.Show("wrong info!!");
-
-            user = null;
         }
 
         public void Quit(string role)
         {
+            Form2 frm2 = new Form2(this);
+            
             if (role == "admin")
             {
-                Form2 frm2 = new Form2(this);
-                frm2.Text = $"Admin {name}";
-                frm2.Show();
+                frm2.Text = $"Admin {userlogged.first_name}";
+                frm2.isAdmin = true;
             }
             else
-                new Form3(this).Show();
+            {
+                frm2.Text = $"User {userlogged.first_name}";
+                frm2.isAdmin = false;
+            }
+                
+
+
+            frm2.Show();
         }
     }
-
-    public interface IsLoaned
-    {
-        bool IsLoaned { get;set; }
-    }
-    public class Loan
-    {
-        public Loan(string isbn, string usercode, DateTime initialdate, DateTime enddate, string rating, Dictionary<string, BindingList<Book>> loans)
-        {
-            Isbn = isbn;
-            Usercode = usercode;
-            Initialdate = initialdate;
-            Enddate = enddate;
-            Rating = rating;
-            Loans = new Dictionary<string, BindingList<Book>>();
-        }
-
-        public string Isbn{get;set;}
-        public string Usercode { get; set; }
-        public DateTime Initialdate { get; set; }
-        public DateTime Enddate { get; }
-        public string Rating { get; set; }
-        public Dictionary<string,BindingList<Book>> Loans { get; set; }   
-    }   
 }

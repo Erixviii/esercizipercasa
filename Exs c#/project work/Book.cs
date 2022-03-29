@@ -1,6 +1,6 @@
 ﻿namespace project_work
 {
-    public class Book:IsLoaned {
+    public class Book {
         public Book()
         {
             isbn = "isbn";
@@ -15,7 +15,6 @@
             num_pages ="num_pages";
             ratings_count ="ratings_count";
             qta ="qta";
-            IsLoaned = false;
         }
 
         public Book(string isbn, string title, string authors, string subtitle, string categories, string thumbnail, string description, string published_year, string average_rating, string num_pages, string ratings_count, string qta)
@@ -32,7 +31,6 @@
             this.num_pages = num_pages;
             this.ratings_count = ratings_count;
             this.qta = qta;
-            IsLoaned= false;
         }
 
         public string isbn { get; set; }
@@ -47,6 +45,5 @@
         public string num_pages{ get; set; }
         public string ratings_count{ get; set; }
         public string qta{ get; set; }
-        public bool IsLoaned { get ; set ; }
     }
 }

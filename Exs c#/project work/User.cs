@@ -1,4 +1,16 @@
-﻿namespace project_work
+﻿using System;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.IO;
+using System.Collections.Generic;
+using Newtonsoft.Json;
+
+namespace project_work
 {
     public class User
     {
@@ -12,6 +24,7 @@
             this.code = code;
             this.password = password;
             this.birth_date = birth_date;
+            bookedbooks=new BindingList<Book>();
         }
 
         public string first_name{get;set;}
@@ -22,5 +35,6 @@
         public string code{get;set;}
         public string password{get;set;}
         public string birth_date{get;set;}
+        public BindingList<Book> bookedbooks {get;set;}
     }
 }

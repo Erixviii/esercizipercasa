@@ -1,0 +1,3 @@
+﻿namespace project_work
+{
+}
