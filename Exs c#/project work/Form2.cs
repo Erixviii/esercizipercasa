@@ -22,7 +22,7 @@ namespace project_work
         private BindingList<Loan> LSTloans;
         private List<User> newuser;
         private BindingSource SRCusers;
-        private BindingSource SRCbooks;
+        private BindingSource SRCbooks=new BindingSource();
         private BindingSource SRCbookedbooks;
         private BindingSource SRCloans;
         private Dictionary<string, Book> Library;
@@ -38,7 +38,8 @@ namespace project_work
 
         private void Form2_Load(object sender, EventArgs e)
         {
-          
+            LSTloans = JsonConvert.DeserializeObject<BindingList<Loan>>(File.ReadAllText(@"../../loans.json"));
+
             LSTbooks = JsonConvert.DeserializeObject<BindingList<Book>>(File.ReadAllText(@"../../books.json"));
             Library = new Dictionary<string, Book>();
             Accesses = new Dictionary<string, User>();
@@ -48,13 +49,10 @@ namespace project_work
             foreach (User ur in LSTusers)
                 Accesses.Add(ur.code, ur);
 
-            
-
             FillCMBfilters();
-            Bindingbooks();
-            Bindingusers();
-            Bindingloans();
             EventHandling();
+            Reloadjsons(this, null);
+            
 
             if (!isAdmin)
                 Userdisplay();
@@ -77,8 +75,8 @@ namespace project_work
 
         private void EventHandling()
         {
-            Reloadjsons = new Delegaterefresh(Refreshusers);
-            Reloadjsons += new Delegaterefresh(Refreshbooks);
+            Reloadjsons = new Delegaterefresh(Refreshbooks);
+            Reloadjsons += new Delegaterefresh(Refreshusers);
             Reloadjsons += new Delegaterefresh(Refreshloans);
 
             
@@ -271,6 +269,15 @@ namespace project_work
                 };
                 dataGridView1.DataSource = newuser;
 
+                try { TXTname.DataBindings.RemoveAt(0); } catch { }
+                try { TXTsurname.DataBindings.RemoveAt(0); } catch { }
+                try { TXTemail.DataBindings.RemoveAt(0); } catch { }
+                try { TXTrole.DataBindings.RemoveAt(0); } catch { }
+                try { TXTcity.DataBindings.RemoveAt(0); } catch { }
+                try { TXTcode.DataBindings.RemoveAt(0); } catch { }
+                try { TXTpassword.DataBindings.RemoveAt(0); } catch { }
+                try { TXTbirth.DataBindings.RemoveAt(0); } catch { }
+
                 TXTname.DataBindings.Add(new Binding("Text", SRCusers, "first_name"));
                 TXTsurname.DataBindings.Add(new Binding("Text", SRCusers, "last_name"));
                 TXTemail.DataBindings.Add(new Binding("Text", SRCusers, "email"));
@@ -303,6 +310,8 @@ namespace project_work
             Accesses.Clear();
             foreach (User ur in LSTusers)
                 Accesses.Add(ur.code, ur);
+
+            Bindingusers();
             //LSTusers = LSTbackup;
         }
         private void Refreshbooks(object sender, ListChangedEventArgs e)
@@ -318,6 +327,8 @@ namespace project_work
                 foreach(User usr in LSTusers)
                     if(usr.code == loan.Usercode)
                         usr.bookedbooks.Add(Library[loan.Isbn]);
+
+            Bindingbooks();
             //LSTusers = LSTbackup;
         }
         private void Refreshloans(object sender, ListChangedEventArgs e)
@@ -325,6 +336,7 @@ namespace project_work
             //var LSTbackup = JsonConvert.DeserializeObject<BindingList<User>>(File.ReadAllText(@"../../users1.json"));
             File.WriteAllText(@"../../loans.json", JsonConvert.SerializeObject(LSTloans));
             //LSTusers = LSTbackup;
+            Bindingloans();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -436,7 +448,7 @@ namespace project_work
 
         private void Button1_Click(object sender, EventArgs e)
         {
-
+            Reloadjsons(this, null);
             bool go = true;
             if (sender as Button == BTNloan)
             {
@@ -453,9 +465,7 @@ namespace project_work
 
                     foreach (Book item in LSTbooks)
                         if (item.isbn == CMBloanisbn.Text)
-                        {
                             qta = int.Parse(item.qta) - 1;
-                        }
 
                     if (qta > 0)
                     {
@@ -473,7 +483,6 @@ namespace project_work
                             foreach (Book bk in LSTbooks)
                                 if (bk.isbn == CMBloanisbn.Text)
                                     bk.qta = (int.Parse(bk.qta) - 1).ToString();
-
                         }
                     }
                     else
