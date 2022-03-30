@@ -452,10 +452,9 @@ namespace project_work
                     int qta = 0;
 
                     foreach (Book item in LSTbooks)
-                        if (item.isbn == (SRCloans.Current as Loan).Isbn)
+                        if (item.isbn == CMBloanisbn.Text)
                         {
                             qta = int.Parse(item.qta) - 1;
-                            item.qta = (int.Parse(item.qta) - 1).ToString();
                         }
 
                     if (qta > 0)
@@ -466,7 +465,14 @@ namespace project_work
                         else
                         {
                             LSTloans.Insert(0, new Loan(CMBloanisbn.Text, CMBloancode.Text, DateTime.Today, DateTime.Today.AddDays(30), "0"));
-                            Accesses[CMBloancode.Text].bookedbooks.Add(Library[CMBloanisbn.Text]);
+
+                            foreach (User usr in LSTusers)
+                               if (usr.code == CMBloancode.Text)
+                                    usr.bookedbooks.Add(Library[CMBloanisbn.Text]);
+
+                            foreach (Book bk in LSTbooks)
+                                if (bk.isbn == CMBloanisbn.Text)
+                                    bk.qta = (int.Parse(bk.qta) - 1).ToString();
 
                         }
                     }
