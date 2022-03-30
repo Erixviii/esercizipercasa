@@ -27,6 +27,8 @@ namespace project_work
         private void Form1_Load(object sender, EventArgs e)
         {
             LSTusers = JsonConvert.DeserializeObject<BindingList<User>>(File.ReadAllText(@"../../users.json"));
+            textBox3.Text = "bhaggie0@cafepress.com";
+            textBox2.Text = "dIIosgaCb4w";
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -36,6 +38,7 @@ namespace project_work
                     userlogged= utn;
                     access = true;
                 }
+            
 
             if (access)
                 Quit(userlogged.role);

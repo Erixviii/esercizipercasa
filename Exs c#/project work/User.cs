@@ -25,7 +25,7 @@ namespace project_work
             this.code = code;
             this.password = password;
             this.birth_date = birth_date;
-            bookedbooks=new BindingList<Book>();
+            bookedbooks=new List<Book>();
         }
         public string first_name{get;set;}
         public string last_name{get;set;}
@@ -35,6 +35,6 @@ namespace project_work
         public string code{get;set;}
         public string password{get;set;}
         public string birth_date{get;set;}
-        public BindingList<Book> bookedbooks {get;set;}
+        public List<Book> bookedbooks {get;set;}
     }
 }

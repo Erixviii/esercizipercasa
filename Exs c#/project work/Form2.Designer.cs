@@ -647,7 +647,7 @@ namespace project_work
             // 
             this.IMGthumbnail.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.IMGthumbnail.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.IMGthumbnail.ErrorImage = global::project_work.Properties.Resources.wtf;
+            this.IMGthumbnail.ErrorImage = null;
             this.IMGthumbnail.InitialImage = global::project_work.Properties.Resources.hey;
             this.IMGthumbnail.Location = new System.Drawing.Point(124, 24);
             this.IMGthumbnail.Margin = new System.Windows.Forms.Padding(4);
