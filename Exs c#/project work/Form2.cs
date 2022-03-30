@@ -277,6 +277,11 @@ namespace project_work
                 try { TXTcode.DataBindings.RemoveAt(0); } catch { }
                 try { TXTpassword.DataBindings.RemoveAt(0); } catch { }
                 try { TXTbirth.DataBindings.RemoveAt(0); } catch { }
+                try { button5.DataBindings.RemoveAt(0); } catch { }
+                try { listBox1.DataBindings.RemoveAt(0); } catch { }
+                try { GRPinfo.DataBindings.RemoveAt(0); } catch { }
+                try { dataGridView1.DataBindings.RemoveAt(0); } catch { }
+                try { button2.DataBindings.RemoveAt(0); } catch { }
 
                 TXTname.DataBindings.Add(new Binding("Text", SRCusers, "first_name"));
                 TXTsurname.DataBindings.Add(new Binding("Text", SRCusers, "last_name"));
