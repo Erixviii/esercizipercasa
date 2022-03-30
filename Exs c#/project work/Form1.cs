@@ -38,7 +38,7 @@ namespace project_work
                 }
 
             if (access)
-                Quit(userlogged.role);
+                Quit(userlogged.Role);
             else
                 MessageBox.Show("wrong info!!");
         }
@@ -57,8 +57,6 @@ namespace project_work
                 frm2.Text = $"User {userlogged.first_name}";
                 frm2.isAdmin = false;
             }
-                
-
 
             frm2.Show();
         }

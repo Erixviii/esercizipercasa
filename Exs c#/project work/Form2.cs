@@ -25,7 +25,7 @@ namespace project_work
         private BindingSource SRCbooks;
         private BindingSource SRCbookedbooks;
         private BindingSource SRCloans;
-        private Dictionary<string,Book> Library;
+        private Dictionary<string, Book> Library;
         private Dictionary<string, User> Accesses;
         private delegate void Delegaterefresh(object sender, ListChangedEventArgs e);
         Delegaterefresh Reloadjsons;
@@ -46,7 +46,7 @@ namespace project_work
             foreach (Book utn in LSTbooks)
                 Library.Add(utn.isbn, utn);
             foreach (User ur in LSTusers)
-                Accesses.Add(ur.code, ur);
+                Accesses.Add(ur.Code, ur);
 
             if (!isAdmin)
                 Userdisplay();
@@ -70,7 +70,6 @@ namespace project_work
 
             BTNbook.Visible = true;
 
-            DGVloans.Left = Width/2 - DGVloans.Width/2;
             DGVloans.Dock = DockStyle.Fill;
         }
 
@@ -176,9 +175,12 @@ namespace project_work
             {
                 DataSource = LSTfiltered
             };
-            
-            CMBloanisbn.DataSource = SRCbooks;
-            CMBloanisbn.DisplayMember = "isbn";
+
+            if (isAdmin)
+            {
+                CMBloanisbn.DataSource = SRCbooks;
+                CMBloanisbn.DisplayMember = "isbn";
+            }
 
             try { LBLisbn.DataBindings.RemoveAt(0);} catch {}
             try { LBLtitle.DataBindings.RemoveAt(0);}catch{}
@@ -208,8 +210,7 @@ namespace project_work
         private void Bindingloans()
         {
 
-            listBox1.DataSource = SRCusers;
-            listBox1.DisplayMember = "first_name";
+            
             CMBloancode.DataSource = SRCusers;
             CMBloancode.DisplayMember = "code";
 
@@ -232,7 +233,7 @@ namespace project_work
                 DGVloans.AutoGenerateColumns = true;
                 SRCbookedbooks = new BindingSource()
                 {
-                    DataSource = Accesses[user.code].bookedbooks
+                    DataSource = Accesses[user.Code].bookedbooks
                 };
 
                 DGVloans.DataSource = SRCbookedbooks;
@@ -257,32 +258,38 @@ namespace project_work
                 DataSource = LSTusers
             };
 
-            newuser = new List<User>()
+            if (isAdmin)
             {
-                new User("","","","","","","","")
-            };
-            dataGridView1.DataSource = newuser;
+                listBox1.DataSource = SRCusers;
+                listBox1.DisplayMember = "first_name";
 
-            TXTname.DataBindings.Add(new Binding("Text",SRCusers,"first_name"));
-            TXTsurname.DataBindings.Add(new Binding("Text",SRCusers,"last_name"));
-            TXTemail.DataBindings.Add(new Binding("Text",SRCusers,"email"));
-            TXTrole.DataBindings.Add(new Binding("Text",SRCusers,"role"));
-            TXTcity.DataBindings.Add(new Binding("Text",SRCusers,"city"));
-            TXTcode.DataBindings.Add(new Binding("Text",SRCusers,"code"));
-            TXTpassword.DataBindings.Add(new Binding("Text",SRCusers,"password"));
-            TXTbirth.DataBindings.Add(new Binding("Text",SRCusers,"birth_date"));
+                newuser = new List<User>()
+                {
+                    new User("","","","","","","","")
+                };
+                dataGridView1.DataSource = newuser;
 
-            button5.DataBindings.Add(new Binding("Visible", CKUserlist, "Checked"));
-            listBox1.DataBindings.Add(new Binding("Visible", CKUserlist, "Checked"));
-            GRPinfo.DataBindings.Add(new Binding("Visible", CKUserlist, "Checked"));
+                TXTname.DataBindings.Add(new Binding("Text", SRCusers, "first_name"));
+                TXTsurname.DataBindings.Add(new Binding("Text", SRCusers, "last_name"));
+                TXTemail.DataBindings.Add(new Binding("Text", SRCusers, "email"));
+                TXTrole.DataBindings.Add(new Binding("Text", SRCusers, "role"));
+                TXTcity.DataBindings.Add(new Binding("Text", SRCusers, "city"));
+                TXTcode.DataBindings.Add(new Binding("Text", SRCusers, "code"));
+                TXTpassword.DataBindings.Add(new Binding("Text", SRCusers, "password"));
+                TXTbirth.DataBindings.Add(new Binding("Text", SRCusers, "birth_date"));
 
-            dataGridView1.DataBindings.Add(new Binding("Visible", CKuseradd, "Checked"));
-            button2.DataBindings.Add(new Binding("Visible", CKuseradd, "Checked"));
+                button5.DataBindings.Add(new Binding("Visible", CKUserlist, "Checked"));
+                listBox1.DataBindings.Add(new Binding("Visible", CKUserlist, "Checked"));
+                GRPinfo.DataBindings.Add(new Binding("Visible", CKUserlist, "Checked"));
 
+                dataGridView1.DataBindings.Add(new Binding("Visible", CKuseradd, "Checked"));
+                button2.DataBindings.Add(new Binding("Visible", CKuseradd, "Checked"));
+            }
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+            
             SRCusers.RemoveCurrent();
             Reloadjsons(this, null);
         }
@@ -314,7 +321,6 @@ namespace project_work
                 new User("","","","","","","","")
             };
 
-            
             dataGridView1.DataSource = newuser;
 
             Reloadjsons(this, null);
@@ -376,14 +382,12 @@ namespace project_work
         {
             if ((sender as Button).Text == "Add")
             {
-                SRCbooks.Add(new Book());
-                SRCbooks.MoveLast();
+                SRCbooks.Insert(0, new Book());
             }
             else
                 SRCbooks.RemoveCurrent();
 
             Reloadjsons(this, null);
-
         }
         private void Loadimg(object sender, EventArgs e)
         {
