@@ -46,17 +46,18 @@ namespace project_work
             foreach (Book utn in LSTbooks)
                 Library.Add(utn.isbn, utn);
             foreach (User ur in LSTusers)
-                Accesses.Add(ur.Code, ur);
+                Accesses.Add(ur.code, ur);
 
-            if (!isAdmin)
-                Userdisplay();
+            
 
             FillCMBfilters();
-            Bindingusers();
             Bindingbooks();
+            Bindingusers();
             Bindingloans();
             EventHandling();
 
+            if (!isAdmin)
+                Userdisplay();
             Reloadjsons(this, null);
         }
 
@@ -71,6 +72,7 @@ namespace project_work
             BTNbook.Visible = true;
 
             DGVloans.Dock = DockStyle.Fill;
+            DGVloans.Enabled = false;
         }
 
         private void EventHandling()
@@ -139,10 +141,11 @@ namespace project_work
                 (SRCbooks.Current as Book).thumbnail = TXTdinamic.Text;
             }
 
+            if (sender as PictureBox != IMGthumbnail)
+                TXTdinamic.DataBindings.Add(new Binding("Text", SRCbooks, (sender as Control).DataBindings[0].BindingMemberInfo.BindingMember));
+
             if (!TXTdinamic.Visible)
                 TXTdinamic.Visible = false;
-
-            TXTdinamic.DataBindings.Add(new Binding("Text", SRCbooks, (sender as Control).DataBindings[0].BindingMemberInfo.BindingMember));
 
             lastclicked = sender;
 
@@ -209,7 +212,6 @@ namespace project_work
 
         private void Bindingloans()
         {
-
             
             CMBloancode.DataSource = SRCusers;
             CMBloancode.DisplayMember = "code";
@@ -233,7 +235,7 @@ namespace project_work
                 DGVloans.AutoGenerateColumns = true;
                 SRCbookedbooks = new BindingSource()
                 {
-                    DataSource = Accesses[user.Code].bookedbooks
+                    DataSource = Accesses[user.code].bookedbooks
                 };
 
                 DGVloans.DataSource = SRCbookedbooks;
@@ -297,12 +299,25 @@ namespace project_work
         {
             //var LSTbackup = JsonConvert.DeserializeObject<BindingList<User>>(File.ReadAllText(@"../../users1.json"));
             File.WriteAllText(@"../../users.json", JsonConvert.SerializeObject(LSTusers));
+            
+            Accesses.Clear();
+            foreach (User ur in LSTusers)
+                Accesses.Add(ur.code, ur);
             //LSTusers = LSTbackup;
         }
         private void Refreshbooks(object sender, ListChangedEventArgs e)
         {
             //var LSTbackup = JsonConvert.DeserializeObject<BindingList<User>>(File.ReadAllText(@"../../users1.json"));
             File.WriteAllText(@"../../books.json", JsonConvert.SerializeObject(LSTbooks));
+
+            Library.Clear();    
+            foreach (Book utn in LSTbooks)
+                Library.Add(utn.isbn, utn);
+
+            foreach(Loan loan in LSTloans)
+                foreach(User usr in LSTusers)
+                    if(usr.code == loan.Usercode)
+                        usr.bookedbooks.Add(Library[loan.Isbn]);
             //LSTusers = LSTbackup;
         }
         private void Refreshloans(object sender, ListChangedEventArgs e)
@@ -381,9 +396,7 @@ namespace project_work
         private void button6_Click(object sender, EventArgs e)
         {
             if ((sender as Button).Text == "Add")
-            {
                 SRCbooks.Insert(0, new Book());
-            }
             else
                 SRCbooks.RemoveCurrent();
 
@@ -423,82 +436,81 @@ namespace project_work
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            if (Checkloan(sender as Button) && sender as Button == BTNloan)
+
+            bool go = true;
+            if (sender as Button == BTNloan)
             {
-                int qta = 0;
-
-                foreach (Book item in LSTbooks)
-                    if (item.isbn == (SRCloans.Current as Loan).Isbn)
+                foreach (Book b in Accesses[CMBloancode.Text].bookedbooks)
+                    if (b.isbn == CMBloanisbn.Text)
                     {
-                        qta = int.Parse(item.qta) - 1;
-                        item.qta = (int.Parse(item.qta) - 1).ToString();
+                        MessageBox.Show("già inserito");
+                        go = false;
                     }
 
-                if (qta > 0)
+                if(go)
                 {
+                    int qta = 0;
 
-                    if (Accesses[CMBloancode.Text].bookedbooks.Count == 3)
-                        MessageBox.Show("max 3 loans...");
-                    else
+                    foreach (Book item in LSTbooks)
+                        if (item.isbn == (SRCloans.Current as Loan).Isbn)
+                        {
+                            qta = int.Parse(item.qta) - 1;
+                            item.qta = (int.Parse(item.qta) - 1).ToString();
+                        }
+
+                    if (qta > 0)
                     {
-                        LSTloans.Insert(0, new Loan(CMBloanisbn.Text, CMBloancode.Text, DateTime.Today, DateTime.Today.AddDays(30), "0"));
-                        Accesses[CMBloancode.Text].bookedbooks.Add(Library[CMBloanisbn.Text]);
 
+                        if (Accesses[CMBloancode.Text].bookedbooks.Count == 3)
+                            MessageBox.Show("max 3 loans...");
+                        else
+                        {
+                            LSTloans.Insert(0, new Loan(CMBloanisbn.Text, CMBloancode.Text, DateTime.Today, DateTime.Today.AddDays(30), "0"));
+                            Accesses[CMBloancode.Text].bookedbooks.Add(Library[CMBloanisbn.Text]);
+
+                        }
                     }
+                    else
+                        MessageBox.Show("libro esaurito");
                 }
-                else
-                    MessageBox.Show("libro esaurito");
-
             }
-            if (Checkloan(sender as Button) && sender as Button == BTNbook)
+            if (sender as Button == BTNbook)
             {
+                go = true;
 
-                if (int.Parse(Library[(SRCbooks.Current as Book).isbn].qta) > 0)
-                {
-
-                    if (Accesses[user.code].bookedbooks.Count == 3)
+                foreach (Book b in Accesses[user.code].bookedbooks)
+                    if (b.isbn == (SRCbooks.Current as Book).isbn)
                     {
-                        MessageBox.Show("max 3 loans...");
+                        MessageBox.Show("già inserito");
+                        go= false;
+                    }
+
+                if (go)
+                {
+                    if (int.Parse((SRCbooks.Current as Book).qta) > 0)
+                    {
+
+                        if (Accesses[user.code].bookedbooks.Count == 3)
+                        {
+                            MessageBox.Show("max 3 loans...");
+                        }
+                        else
+                        {
+
+                            LSTloans.Insert(0, new Loan(LBLisbn.Text, user.code, DateTime.Today, DateTime.Today.AddDays(30), "0"));
+                            user.bookedbooks.Add(SRCbooks.Current as Book);
+                            (SRCbooks.Current as Book).qta = (int.Parse(Library[(SRCbooks.Current as Book).isbn].qta) - 1).ToString();
+                            Bindingbooks();
+                            MessageBox.Show((int.Parse(Library[(SRCbooks.Current as Book).isbn].qta) - 1).ToString()+ "  " +  Library[(SRCbooks.Current as Book).isbn].title);
+                        }
                     }
                     else
-                    {
-                        LSTloans.Insert(0, new Loan(LBLisbn.Text, user.code, DateTime.Today, DateTime.Today.AddDays(30), "0"));
-                        Accesses[user.code].bookedbooks.Add(SRCbooks.Current as Book);
-                        Library[(SRCbooks.Current as Book).isbn].qta = (int.Parse(Library[(SRCbooks.Current as Book).isbn].qta) - 1).ToString();
-                    
-                    }
+                        MessageBox.Show("libro esaurito");
                 }
-                else
-                    MessageBox.Show("libro esaurito");
             }
 
             Reloadjsons(this, null);
         }
-
-        private bool Checkloan(Button btn)
-        {
-            string isbn;
-            string code;
-            if (btn == BTNloan)
-            {
-                isbn = CMBloanisbn.Text;
-                code= CMBloancode.Text;
-            }
-            else { 
-                isbn = (SRCbooks.Current as Book).isbn;
-                code = user.code;
-            }
-                
-
-            foreach (Book b in Accesses[code].bookedbooks)
-                if (b.isbn == isbn)
-                {
-                    MessageBox.Show("già inserito");
-                    return false;
-                }
-            return true;
-        }
-
 
         private void button7_Click(object sender, EventArgs e)
         {

@@ -32,13 +32,13 @@ namespace project_work
         private void button1_Click(object sender, EventArgs e)
         {
             foreach (User utn in LSTusers)
-                if (utn.password == textBox2.Text && utn.Email == textBox3.Text) { 
+                if (utn.password == textBox2.Text && utn.email == textBox3.Text) { 
                     userlogged= utn;
                     access = true;
                 }
 
             if (access)
-                Quit(userlogged.Role);
+                Quit(userlogged.role);
             else
                 MessageBox.Show("wrong info!!");
         }
