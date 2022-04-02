@@ -1,0 +1,30 @@
+﻿<Page
+    x:Class="es1.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:es1"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <RelativePanel Width="500" HorizontalAlignment="Center">
+            <Button x:Name="BTNnome" Click="Showname" Content="Mostra nome" Margin="30,200,0,0" />
+            <TextBlock x:Name="TXTnome" Foreground="BlueViolet" HorizontalAlignment="Left" Margin="227,170,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" FocusVisualSecondaryBrush="#99FFFFFF" UseLayoutRounding="False" d:LayoutRounding="Auto">
+                <TextBlock.RenderTransform>
+                    <CompositeTransform Rotation="-1.107"/>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+            <Button x:Name="BTNpopup" Content="Mostra popup"  Margin="30,200,0,0" RenderTransformOrigin="-5.613,-1.5"/>
+            <Popup IsOpen="false" Width="200" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center">
+                
+            </Popup>
+            <TextBlock HorizontalAlignment="Center" Text="Heyla" Foreground="AliceBlue"/>
+                    <TextBlock.RenderTransform>
+                        <CompositeTransform Rotation="-1.107"/>
+                    </TextBlock.RenderTransform>
+            </TextBlock>
+        </RelativePanel>
+    </Grid>
+</Page>
