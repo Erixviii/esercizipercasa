@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Navigation;
 
 // Il modello di elemento Pagina vuota è documentato all'indirizzo https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x410
 
-namespace es1
+namespace PopUp
 {
     /// <summary>
     /// Pagina vuota che può essere usata autonomamente oppure per l'esplorazione all'interno di un frame.
@@ -27,29 +27,17 @@ namespace es1
             this.InitializeComponent();
         }
 
-        public void Showname(object sender,RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if(BTNnome.Content.ToString() == "Mostra nome")
-            {
-                TXTnome.Text = "Eric";
-                BTNnome.Content = "Nascondi";
-            }
-            else
-            {
-                TXTnome.Text = "";
-                BTNnome.Content = "Mostra nome";
-            }
+            //MioPopUp.Height = Window.Current.Bounds.Height;
+            MioPopUp.IsOpen = true;
         }
 
-        private void BTNpopup_Click(object sender, RoutedEventArgs e)
+        private void Button1_Click(object sender, RoutedEventArgs e)
         {
-            if (BTNpopup.Content.ToString() == "Mostra popup")
-                BTNpopup.Content = "Nascondi popup";
-            else
-                BTNpopup.Content = "Mostra popup";
-
-            Popup.IsOpen = !Popup.IsOpen;
-            Popup.IsLightDismissEnabled = !Popup.IsLightDismissEnabled;
+            textBox.Text = "Antonella Carmen";
+            textBox.IsEnabled = true;
+            
         }
     }
 }

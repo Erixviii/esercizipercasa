@@ -1,0 +1,46 @@
+﻿<Page
+    x:Class="Nome_Uwp.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Nome_Uwp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="729*"/>
+            <RowDefinition Height="722*"/>
+        </Grid.RowDefinitions>
+        <StackPanel HorizontalAlignment = "Center" Grid.RowSpan="2">
+            <TextBlock Text = "Ciao!" 
+            Margin = "20" 
+            Width = "200" 
+            Foreground="BlueViolet"
+            HorizontalAlignment = "Left"/>
+            <TextBlock Text = "Scrivi il tuo nome." 
+            Margin = "20" 
+            Width = "200" 
+            HorizontalAlignment = "Left"/>
+            <TextBox x:Name = "txtbox"  
+            Width = "280" 
+            Margin = "20" 
+            Background="BlueViolet"
+            Foreground="White"
+            PlaceholderText="Scrivi qui il tuo nome"
+            HorizontalAlignment = "Left"/>
+            <Button x:Name = "button" Content = "Click Me" 
+            Margin = "20" 
+            Click = "button_Click"/>
+            <TextBlock x:Name = "txtblock"  
+            HorizontalAlignment = "Left" 
+            Foreground="DarkRed"
+            Margin = "20"/>
+            <Button x:Name="BtnNavigate" Content="Vai alla prossima pagina" HorizontalAlignment="Center" 
+             VerticalAlignment="Center" Click="BtnNavigate_Click">
+
+            </Button>
+        </StackPanel>
+    </Grid>
+</Page>

@@ -9,22 +9,15 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <RelativePanel Width="500" HorizontalAlignment="Center">
+        <StackPanel Width="500" HorizontalAlignment="Center">
             <Button x:Name="BTNnome" Click="Showname" Content="Mostra nome" Margin="30,200,0,0" />
             <TextBlock x:Name="TXTnome" Foreground="BlueViolet" HorizontalAlignment="Left" Margin="227,170,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" FocusVisualSecondaryBrush="#99FFFFFF" UseLayoutRounding="False" d:LayoutRounding="Auto">
                 <TextBlock.RenderTransform>
                     <CompositeTransform Rotation="-1.107"/>
                 </TextBlock.RenderTransform>
             </TextBlock>
-            <Button x:Name="BTNpopup" Content="Mostra popup"  Margin="30,200,0,0" RenderTransformOrigin="-5.613,-1.5"/>
-            <Popup IsOpen="false" Width="200" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center">
-                
-            </Popup>
-            <TextBlock HorizontalAlignment="Center" Text="Heyla" Foreground="AliceBlue"/>
-                    <TextBlock.RenderTransform>
-                        <CompositeTransform Rotation="-1.107"/>
-                    </TextBlock.RenderTransform>
-            </TextBlock>
-        </RelativePanel>
+            <Button x:Name="BTNpopup" Click="BTNpopup_Click" Content="Mostra popup" RenderTransformOrigin="-5.613,-1.5" Margin="34,0,0,0"/>
+            <Popup x:Name="Popup" Opacity="100" IsOpen="false" Width="200" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" FocusVisualPrimaryBrush="#FFFF1818" FocusVisualSecondaryBrush="{x:Null}" IsLightDismissEnabled="True"/>
+        </StackPanel>
     </Grid>
 </Page>
